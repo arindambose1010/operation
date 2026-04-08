@@ -1,0 +1,58 @@
+
+#passwordStrength
+
+{
+        height:10px;
+        display:block;
+        float:left;
+        font-size:0.8em;font-family:Arial, Helvetica, sans-serif;
+}
+.strength0
+{
+        width:170px;
+        background:#cccccc;
+        font-size:0.8em;font-family:Arial, Helvetica, sans-serif;
+}
+.strength1
+
+{
+        width:170px;
+        background:#ff0000;
+        font-size:0.8em;font-family:Arial, Helvetica, sans-serif;
+}
+
+.strength2
+
+{
+        width:170px; 
+        background:#ff5f5f;
+        font-size:0.8em;font-family:Arial, Helvetica, sans-serif;
+}
+
+.strength3
+{
+        width:170px;
+        background:#56e500;
+        font-size:0.8em;font-family:Arial, Helvetica, sans-serif;
+}
+.strength4
+
+{
+   background:#4dcd00;
+       width:170px;
+       font-size:0.8em;font-family:Arial, Helvetica, sans-serif;
+}
+.strength5
+{
+background:#399800;
+width:170px;
+font-size:0.8em;font-family:Arial, Helvetica, sans-serif;
+}
+/*here add this*/
+.change_alert_pwd_popup
+{
+text-align:left;
+margin-left:4em;
+line-height:16px; 
+}
+

@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+		   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd 
+    	   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+		   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+	<!-- Spring Services Configuration -->
+	<bean id="propertyPlaceholderConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:hibernate.db.properties</value>
+			</list>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+	</bean>
+
+	<!-- Set up the test Hibernate SessionFactory -->
+	<bean id="enterpriseSessionFactory"
+		class="com.tcs.framework.ehf.springext.ExtendedAnnotationSessionFactoryBean"
+		lazy-init="true">
+
+		<property name="annotatedClasses">
+			<list>
+				<value>com.ahct.model.AsrimUsers</value>
+				<value>com.ahct.model.AsrimCombo</value>
+				<value>com.ahct.model.AsrimComboId</value>
+				<value>com.ahct.model.EhfmEmpnlArticleMstr</value>
+				<value>com.ahct.model.EhfUserMessage</value>
+				<value>com.ahct.model.EhfGroupMessage</value>
+				<value>com.ahct.model.EhfHospitalMessage</value>
+				<value>com.ahct.model.EhfChronicPatientDtl</value>
+				<value>com.ahct.model.EhfChronicCaseDtl</value>
+				<value>com.ahct.model.AsrimDiseaseMain</value>
+				<value>com.ahct.model.AsritCaseCardValidateDtls</value>
+				<value>com.ahct.model.SgvcPswdAudit</value>
+				<value>com.ahct.model.SgvcPswdAuditId</value>
+				<value>com.ahct.model.SgvcEmpMst</value>
+				<value>com.ahct.model.SgvcEmpMstId</value>
+				<value>com.ahct.model.EhfSmsData</value>
+				<value>com.ahct.model.EhfContactDtlsAudit</value>
+				<value>com.ahct.model.EhfmCmbDtls</value>
+				<value>com.ahct.model.EhfmCmbHdr</value>
+				<value>com.ahct.model.EhfmDepts</value>
+				<value>com.ahct.model.EhfmDesignation</value>
+				<value>com.ahct.model.EhfmDesignationId</value>
+				<value>com.ahct.model.EhfmGrps</value>
+				<value>com.ahct.model.EhfmShifts</value>
+				<value>com.ahct.model.EhfmUnitlevels</value>
+				<value>com.ahct.model.EhfmUnitlevelsId</value>
+				<value>com.ahct.model.EhfmUnits</value>
+				<value>com.ahct.model.EhfmUserDtls</value>
+				<value>com.ahct.model.EhfmUsers</value>
+				<value>com.ahct.model.EhfmUsersUnitDtls</value>
+				<value>com.ahct.model.EhfmUsersUnitDtlsId</value>
+				<value>com.ahct.model.EhfmUsrDsgnDtls</value>
+				<value>com.ahct.model.EhfmUsrDsgnDtlsId</value>
+				<value>com.ahct.model.EhfmUsrGrpsMpg</value>
+				<value>com.ahct.model.EhfmUsrGrpsMpgId</value>
+				<value>com.ahct.model.EhfmWorkAllocation</value>
+				<value>com.ahct.model.EhfmWorkAllocationId</value>
+				<value>com.ahct.model.EhfmMod</value>
+				<value>com.ahct.model.EhfmModGrpMpg</value>
+				<value>com.ahct.model.EhfmModGrpMpgId</value>
+				<value>com.ahct.model.EhfmSeq</value>
+                <value>com.ahct.model.EhfmSpecialities</value>
+				<value>com.ahct.model.EhfAudit</value>
+				<value>com.ahct.model.EhfAuditId</value>
+				<value>com.ahct.model.EhfCase</value>
+				<value>com.ahct.model.EhfmWorkflow</value>
+				<value>com.ahct.model.EhfmWorkflowStatus</value>
+				<value>com.ahct.model.EhfmWorkflowStatusId</value>
+				<value>com.ahct.model.EhfPatient</value>
+				<value>com.ahct.model.EhfPatientSmsData</value>
+                <value>com.ahct.model.EhfmMedcoDtls</value>
+                <value>com.ahct.model.EhfmHospCatMst</value>
+				<value>com.ahct.model.EhfCaseClaim</value>
+				<!-- Chandana - 6444 - 06-02-2025 -->
+				<value>com.ahct.model.EhfCaseClaimHubSpokePayment</value>
+				<value>com.ahct.model.EhfHubSpokeAudit</value>
+				<value>com.ahct.model.EhfHubspokeAuditPK</value>
+				<value>com.ahct.model.EhfClaimCexChklist</value>
+				<value>com.ahct.model.EhfClaimCtdChklst</value>
+				<value>com.ahct.model.EhfClaimTechChklst</value>
+				<value>com.ahct.model.EhfClaimTechChklstNew</value>
+				<value>com.ahct.model.EhfErroneousClaim</value>
+                <value>com.ahct.model.EhfSymtematicExamDtls</value>
+				<value>com.ahct.model.EhfmDiagCategoryMst</value>
+				<value>com.ahct.model.EhfmDiagCategoryMstId</value>
+				<value>com.ahct.model.EhfmTherapyProcMst</value>
+				<value>com.ahct.model.EhfmTherapyProcMstId</value>
+				<value>com.ahct.model.EhfmHospitals</value>
+				<value>com.ahct.model.EhfmHospMithraDtls</value>
+				<value>com.ahct.model.EhfmHospMithraDtlsId</value>
+				<value>com.ahct.model.EhfmMedcoDetails</value>
+				<value>com.ahct.model.EhfmMedcoDetailsId</value>
+				<value>com.ahct.model.EhfCasePatient</value>
+				<value>com.ahct.model.EhfPatientHospDiagnosis</value>
+				<value>com.ahct.model.EhfmPersonalHistoryMst</value>
+				<value>com.ahct.model.EhfPatientPersonalHistory</value>
+				<value>com.ahct.model.EhfPatientExamFind</value>
+				<value>com.ahct.model.EhfPatientDocAttach</value>
+				<value>com.ahct.model.EhfEmployeeDocAttach</value>
+				<value>com.ahct.model.EhfEnrollment</value>
+				<value>com.ahct.model.EhfEnrollmentFamily</value>
+				<value>com.ahct.model.EhfmLocations</value>
+				<value>com.ahct.model.EhfmLocationsId</value>
+				<value>com.ahct.model.EhfmGenInvestigationsMst</value>
+				<value>com.ahct.model.EhfmFamilyHistoryMst</value>
+				<value>com.ahct.model.EhfmPastHistoryMst</value>
+				<value>com.ahct.model.EhfmOccupationMst</value>
+				<value>com.ahct.model.EhfPatientTests</value>
+				<value>com.ahct.model.EhfmDiagSubCatMst</value>
+				<value>com.ahct.model.EhfmDiagSubCatMstId</value>
+				<value>com.ahct.model.EhfmRelationMst</value>
+				<value>com.ahct.model.EhfmSystematicExamFnd</value>
+				<value>com.ahct.model.EhfmSystematicExamFndId</value>
+				<value>com.ahct.model.EhfmComplaintMst</value>
+				<value>com.ahct.model.EhfmComplaintMstId</value>
+				<value>com.ahct.model.EhfCaseTherapyInvest</value>
+				<value>com.ahct.model.EhfCaseDocAttch</value>
+				<value>com.ahct.model.EhfAttachDisplay</value>
+				<value>com.ahct.model.EhfAttachDisplayId</value>
+				<value>com.ahct.model.EhfCaseStatusAttach</value>
+				<value>com.ahct.model.EhfCaseStatusAttachId</value>
+				<value>com.ahct.model.EhfAttachType</value>
+				<value>com.ahct.model.EhfAttachTypeId</value>
+				<value>com.ahct.model.EhfCaseClinicalNotes</value>
+				<value>com.ahct.model.EhfCaseFlpupDrug</value>
+				<value>com.ahct.model.EhfClinicalFlpupMpg</value>
+				<value>com.ahct.model.EhfFollowupTests</value>
+				<value>com.ahct.model.EhfFollowUpAudit</value>
+				<value>com.ahct.model.EhfFollowUpAuditId</value>
+				<value>com.ahct.model.EhfFollowupChklst</value>
+				<value>com.ahct.model.EhfCaseFollowupClaim</value>
+				<value>com.ahct.model.EhfSmsBuffer</value>
+				<value>com.ahct.model.EhfEmpBiomOthLoginDtl</value>
+				<value>com.ahct.model.EhfEmpBiomOthLoginDtlPK</value>
+				<value>com.ahct.model.EhfCaseTherapy</value>
+				<value>com.ahct.model.EhfmFollowupPackages</value>
+				<value>com.ahct.model.EhfmFollowupPackagesId</value>
+				<value>com.ahct.model.EhfmHospTlDcMpg</value>
+				<value>com.ahct.model.EhfCaseLockStatus</value>
+				<value>com.ahct.model.EhfmTherapyCatMstId</value>
+				<value>com.ahct.model.EhfmTherapyCatMst</value>
+				<value>com.ahct.model.EhfmDrugsMst</value>
+				<value>com.ahct.model.EhfmDrugsMstId</value>
+				<value>com.ahct.model.EhfFollowUpClaimAccounts</value>
+				<value>com.ahct.model.EhfFollowupDocAttch</value>
+				<value>com.ahct.model.EhfPaymentSlabDtls</value>
+				<value>com.ahct.model.EhfPaymentSlabDtlsID</value>
+				<value>com.ahct.model.EhfTdsAudit</value>
+				<value>com.ahct.model.EhfTdsAuditId</value>
+				<value>com.ahct.model.EhfRevFundAuditId</value>
+				<value>com.ahct.model.EhfRevFundAudit</value>
+				<value>com.ahct.model.EhfmSlabPackage</value>
+				<value>com.ahct.model.EhfmSlabPackageId</value>
+				<value>com.ahct.model.EhfAcctsTransactionDtls</value>
+				<value>com.ahct.model.EhfAcctsTransDualEntries</value>
+				<value>com.ahct.model.AsritCaseSurgeryInvest</value>
+				<value>com.ahct.model.EhfCaseEnhancementDtls</value>
+				<value>com.ahct.model.EhfCaseEnhPatientDrugs</value>
+				<value>com.ahct.model.EhfCaseIpDrugs</value>
+				<value>com.ahct.model.EhfCaseMedicalDtls</value>
+				<value>com.ahct.model.EhfCasePreauthAmounts</value>
+				<value>com.ahct.model.EhfCaseSurgicalDtls</value>
+				<value>com.ahct.model.EhfDischargeSummary</value>
+				<value>com.ahct.model.EhfmComorbid</value>
+				<value>com.ahct.model.EhfmDiagDisAnatomicalMst</value>
+				<value>com.ahct.model.EhfmDiagDisAnatomicalMstId</value>
+				<value>com.ahct.model.EhfmDiagDiseaseMst</value>
+				<value>com.ahct.model.EhfmDiagDiseaseMstId</value>
+				<value>com.ahct.model.EhfmDiagMainCatMst</value>
+				<value>com.ahct.model.EhfmDiagMainCatMstId</value>
+				<value>com.ahct.model.EhfmDiagnosisMst</value>
+				<value>com.ahct.model.EhfmDiagnosisMstId</value>
+				<value>com.ahct.model.EhfmHospQuantity</value>
+				<value>com.ahct.model.EhfmPreauthWorkflow</value>
+				<value>com.ahct.model.EhfmPreauthWorkflowId</value>
+				<value>com.ahct.model.EhfPanelDocCaseDtls</value>
+				<value>com.ahct.model.EhfPatientDrugs</value>
+				<value>com.ahct.model.EhfTelephonicRegn</value>
+				<value>com.ahct.model.EhfClaimAccounts</value>
+				<value>com.ahct.model.EhfClaimTdsPayment</value>
+				<value>com.ahct.model.EhfClaimTrustPayment</value>
+				<value>com.ahct.model.EhfClaimUploadFile</value>
+				<value>com.ahct.model.EhfEmpCaseDtls</value>
+				<value>com.ahct.model.EhfmIpDrugMst</value>
+				<value>com.ahct.model.EhfmTherapyInvest</value>
+				<value>com.ahct.model.EhfmTherapyInvestId</value>
+				<value>com.ahct.model.EhfmSplstDctrs</value>
+				<value>com.ahct.model.EhfmSplstDctrsId</value>
+				<value>com.ahct.model.EhfmDotorSplty</value>
+				<value>com.ahct.model.EhfmDotorSpltyId</value>
+				<value>com.ahct.model.EhfmIpStrengthMst</value>
+				<value>com.ahct.model.EhfmIpRouteMst</value>
+				<value>com.ahct.model.EhfmHospStay</value>
+				<value>com.ahct.model.EhfmOpStrengthMst</value>
+				<value>com.ahct.model.EhfmOpRouteMst</value>
+				<value>com.ahct.model.EhfmOpDrugMst</value>
+				<value>com.ahct.model.EhfmUsrSpecialityMpg</value>
+				<value>com.ahct.model.EhfmUsrSpecialityMpgId</value>
+				<value>com.ahct.model.EhfmUsrHospitalMpg</value>
+				<value>com.ahct.model.EhfmUsrHospitalMpgId</value>
+				<value>com.ahct.model.EhfmProcComorbid</value>
+				<value>com.ahct.model.EhfSsrMedinpData</value>
+				<value>com.ahct.model.EhfSsrMedinpDataPK</value>
+				<value>com.ahct.model.EhfPanelDocAuditDtls</value>
+			    <value>com.ahct.model.EhfPanelDocAuditDtlsId</value>
+			    <value>com.ahct.model.EhfPnlDocPmntInfo</value>
+			    <value>com.ahct.model.EhfmGrpWorkFlow</value>
+				<value>com.ahct.model.EhfmWorkFlowGrpMpg</value>
+				<value>com.ahct.model.EhfmWorkFlowMst</value>
+				<value>com.ahct.model.EhfPnlDocWrkflow</value>
+				<value> com.ahct.model.EhfPnldocTdsPayment</value>
+				<value> com.ahct.model.EhfPnldocTdsAudit</value>
+				<value> com.ahct.model.EhfPnldocTdsAuditId</value>
+				<value> com.ahct.model.EhfPanelDocPayments</value>
+				<value> com.ahct.model.EhfmTrustActDtls</value>
+				<value> com.ahct.model.EhfmBankMaster</value>
+				<value> com.ahct.model.EhfmPnlDocAcctDtls</value>
+				<value> com.ahct.model.EhfmPnlDocAcctDtlsId</value>
+				<value>com.ahct.model.EhfMedicalAuditAnswers</value>
+				<value>com.ahct.model.EhfMedicalAuditWorkflow</value>
+				<value>com.ahct.model.EhfMedicalAuditSampleCases</value>
+				<value>com.ahct.model.EhfMedicalAuditHighVolumeCases</value>
+				<value>com.ahct.model.EhfmMedAuditQuesMst</value>
+				<value>com.ahct.model.EhfmGrpWorkFlow</value>
+				<value>com.ahct.model.EhfmWorkFlowMst</value>
+			  	<value>com.ahct.model.EhfmWorkFlowGrpMpg</value>
+			  	<value>com.ahct.model.EhfMedAuditWorkFlowAudit</value>
+				<value>com.ahct.model.EhfDigitalSign</value>
+				<value>com.ahct.model.EhfmHospBankDtls</value>
+				<value>com.ahct.model.EhfmHospBankDtlsPK</value>
+				<value>com.ahct.model.EhfmHospSurgPer</value>
+                <value>com.ahct.model.EhfmModuleGrpMpg</value>
+                <value>com.ahct.model.EhfmModuleGrpMpgId</value>
+                <value>com.ahct.model.EhfmPayGradeMst</value>
+                <value>com.ahct.model.EhfmPayGradeMstId</value>
+                <value>com.ahct.model.EhfDesignationMst</value>
+                <value>com.ahct.model.EhfDesignationMstId</value>
+                <value>com.ahct.model.EhfEnrollAudit</value>
+                <value>com.ahct.model.EhfEnrollAuditId</value>
+                <value>com.ahct.model.EhfmTherapyGrpTimeout</value>
+                <value>com.ahct.model.EhfmTherapyGrpTimeoutId</value>
+				<value>com.ahct.model.EhfChronicCaseClaim</value>
+				<value>com.ahct.model.EhfmCaseCochlearDtl</value>
+				<value>com.ahct.model.EhfmDoctorQlfctns</value>
+				<value>com.ahct.model.EhfmDoctorQlfctnsId</value>
+				<value>com.ahct.model.EhfmDutyDctrs</value>
+				<value>com.ahct.model.EhfmDutyDctrsId</value>
+				<value>com.ahct.model.EhfmGeneralExaminFndsMst</value>
+				<value>com.ahct.model.EhfmGeneralExaminFndsMstPK</value>
+				<value>com.ahct.model.EhfmMedcoMaster</value>
+				<value>com.ahct.model.EhfmOpTherapyPkgMst</value>
+				<value>com.ahct.model.EhfmOpTherapyPkgMstId</value>
+				<value>com.ahct.model.EhfmQualMst</value>
+				<value>com.ahct.model.EhfmSmsData</value>
+				<value>com.ahct.model.EhfonBedStatus</value>
+				<value>com.ahct.model.EhfPatJbpmProcess</value>
+				<value>com.ahct.model.PhaseMaster</value>
+                <value>com.ahct.model.EhfFlagDtls</value>
+                <value>com.ahct.model.EhfFlagAttach</value>
+                <value>com.ahct.model.EhfFlagAudit</value>
+                <value>com.ahct.model.EhfFlagAuditId</value>
+				<value>com.ahct.model.EhfCsvCaseSearch</value>
+                 <value>com.ahct.model.EhfChronicPatientDtl</value>
+ 				<value>com.ahct.model.EhfChronicCaseDtl</value>
+ 				<value>com.ahct.model.EhfChronicDrugIssueDtl</value>
+				<value>com.ahct.model.EhfChronicDrugIssueDtlPK</value>
+				<value>com.ahct.model.EhfChronicPatientExamFind</value>
+				<value>com.ahct.model.EhfChronicPatientHosDgnsi</value>
+				<value>com.ahct.model.EhfChronicPatientPerHstry</value>
+				<value>com.ahct.model.EhfmChronicInvestMst</value>
+				<value>com.ahct.model.EhfmChronicInvestMstPK</value>
+				<value>com.ahct.model.EhfChronicCaseTherapy</value>
+				<value>com.ahct.model.EhfChronicCaseTherapyPK</value>
+				<value>com.ahct.model.EhfChronicPatientDrug</value>
+				<value>com.ahct.model.EhfChronicPatientDrugPK</value>
+				<value>com.ahct.model.EhfChronicTherapyInvest</value>
+				<value>com.ahct.model.EhfChronicTherapyInvestPK</value>
+				<value>com.ahct.model.EhfChronicPatientTest</value>
+				<value>com.ahct.model.EhfChronicAudit</value>
+				<value>com.ahct.model.EhfChronicAuditPK</value>
+				<value>com.ahct.model.EhfChronicDocAttch</value>
+				<value>com.ahct.model.EhfmChronicInvestMst</value>
+				<value>com.ahct.model.EhfmChronicInvestMstPK</value>
+				<value>com.ahct.model.EhfmChronicPkgMst</value>
+				<value>com.ahct.model.EhfmChronicPkgMstPK</value>
+				<value>com.ahct.model.EhfCoexChklst</value>
+				<value>com.ahct.model.EhfCoexChklstPK</value>
+				<value>com.ahct.model.EhfCotdChklst</value>
+				<value>com.ahct.model.EhfCotdChklstPK</value>
+				<value>com.ahct.model.EhfmChronicDrugMst</value>
+				<value>com.ahct.model.EhfmChronicDrugMstPK</value>
+
+				<value>com.ahct.model.EhfAhcExamFind</value>
+				<value>com.ahct.model.EhfAhcHospDiagnosis</value>
+				<value>com.ahct.model.EhfAhcPersonalHistory</value>
+				<value>com.ahct.model.EhfmAhcTests</value>
+				<value>com.ahct.model.EhfAhcPart1Results</value>
+				<value>com.ahct.model.EhfAhcPart2Results</value>
+                <value>com.ahct.model.EhfAnnualPatientDtls</value>
+                <value>com.ahct.model.EhfAnnualCaseDtls</value>
+                <value>com.ahct.model.EhfAhcDocAttch</value>
+                <value>com.ahct.model.EhfAhcAudit</value>
+                <value>com.ahct.model.EhfAhcMedicalReport</value>
+                <value>com.ahct.model.EhfmMedicalReport</value>
+                <value>com.ahct.model.EhfChronicPatientDtl</value>
+                <value>com.ahct.model.EhfChronicCaseDtl</value>
+                <value>com.ahct.model.EhfChronicCaseDtl</value>
+                <value>com.ahct.model.EhfAhcexChklst</value>
+                <value>com.ahct.model.EhfAhcTdChklst</value>
+				<value>com.ahct.model.EhfAhcConsultationDtls</value>
+                <value>com.ahct.model.EhfmChronicRouteMst</value>
+                <value>com.ahct.model.EhfmChronicStrengthMst</value>
+                <value>com.ahct.model.EhfmChronicDrugPricMst</value>
+                <value>com.ahct.model.EhfmChronicDrugPricMstPK</value>
+				
+
+				<value>com.ahct.model.EhfAhcClaimAccounts</value>
+				<value>com.ahct.model.EhfAhcClaimUploadFile</value>
+ 				<value>com.ahct.model.EhfSliaPayments</value>
+				
+				<value>com.ahct.model.EhfChronicClaimAccount</value>
+				<value>com.ahct.model.EhfChronicClaimUploadFile</value>
+
+				<value>com.ahct.model.EhfmDentalOpProcedures</value>
+				<value>com.ahct.model.EhfmEDCHospActionDtls</value>
+				<value>com.ahct.model.EhfmEDCHospActionDtlsId</value>
+				<value>com.ahct.model.EhsJournalistEnrollment</value>
+				<value>com.ahct.model.EhfJrnlstFamily</value>
+                <value>com.ahct.model.EhfRevHospDeduct</value>
+                
+                <value>com.ahct.model.EhfmUsrProcMpg</value>
+                <value>com.ahct.model.EhfmHubSpokeMainTherapy</value>
+                <value>com.ahct.model.EhfmHospHubSpokeMpg</value>
+                <value>com.ahct.model.EhfmDmeQuery</value>
+                <value>com.ahct.model.EhfmMainCategoryNabh</value>
+
+
+		      <value> com.ahct.model.EhfAdminSanctionsMetaData</value>
+		      <value> com.ahct.model.EhfAccountsWorkflow</value>
+		      <value> com.ahct.model.EhfAdminSanctionAudit</value>
+		       <value> com.ahct.model.AsritAdminSanctionData</value> 
+		         <value> com.ahct.model.EhfmAcctsHeads</value>
+		         <value> com.ahct.model.SgvaCRMgmtAttach</value>
+		         <value> com.ahct.model.SgvaCRMgmtAttachId</value>
+		         <value> com.ahct.model.SgvaCRMgmtDtls</value>
+		         <value> com.ahct.model.SgvaCRMgmtMvmnt</value>
+		         <value> com.ahct.model.SgvaCRMgmtMvmntId</value>
+		         <value> com.ahct.model.SgvaCRMgmtRemarks</value>
+		         <value> com.ahct.model.SgvaCRMgmtRemarksId</value>
+		         <value> com.ahct.model.SgvaCRMgmtTestScenDtls</value>
+		         <value> com.ahct.model.SgvaCRMgmtTestScenDtlsId</value>
+		         <value> com.ahct.model.SgvaCRMgmtTestScenMst</value>
+		         <value> com.ahct.model.EhfEmpnlHospInfo</value> 
+		         <value> com.ahct.model.EhfEmpnlHospInfoAudit</value> 
+		         <value> com.ahct.model.EhfEmpnlAprvlDtls</value> 
+		         <value> com.ahct.model.EhfEmpnlAprvlDtlsId</value> 
+		         <value> com.ahct.model.EhfEdcWorkFlow</value> 
+		         <value> com.ahct.model.EhfEdcWorkFlowId</value> 
+		         <value> com.ahct.model.EhfEdcAudit</value> 
+		         <value> com.ahct.model.EhfEdcAuditId</value> 
+		         <value> com.ahct.model.EhfEdcAttachments</value>
+		         <value> com.ahct.model.EhfEdcAttachmentsId</value> 
+                   <value>com.ahct.model.EhfJrnlstFamily</value>
+		        <value> com.ahct.model.EhfCochlearFollowup</value> 	
+		         <value>com.ahct.model.AsritAccountsDocAttch</value>
+		         <value>com.ahct.model.EhfmHospTlDcMpg</value>
+                 <value>com.ahct.model.EhsCeoSendbackDtls</value>
+                 <value>com.ahct.model.EhsCeoSendbackDtlsId</value>
+			     <value>com.ahct.model.EhfmCochFollowupPackage</value>
+		         <value>com.ahct.model.EhfmCochFollowupPackagePK</value>
+
+				<value>com.ahct.model.EhfCsvCaseSearch</value>
+                  <value>com.ahct.model.EhfChronicDrugClaimAcct</value>
+                  <value>com.ahct.model.EhfChronicDrugClaimAcctPK</value>
+                  <value>com.ahct.model.EhfmDrugVendorBankDtl</value>
+                   <value>com.ahct.model.EhfChronicClaimAccount</value>
+                  <value>com.ahct.model.EhfmChronicFollowupPackage</value>
+                  <value>com.ahct.model.EhfJrnlstFamily</value>
+                     <value>com.ahct.model.EhfChronicCaseClaim</value>
+                    
+		         <value>com.ahct.model.EhfOpConsultData</value>
+				<value>com.ahct.model.EhfDentalPatientDtls</value>
+                <value>com.ahct.model.EhfmDentalCmbDtls</value>
+                <value>com.ahct.model.EhfDentalOtherExaminations</value>
+				<value>com.ahct.model.EhfDentalOralExaminations</value>
+				<value>com.ahct.model.EhfDentalTissueExaminations</value>
+				<value>com.ahct.model.EhfPatientBioReg</value>
+				<value>com.ahct.model.EhfmDentalProcCriteria</value>
+				<value>com.ahct.model.EhfmDentalProcCriteriaPK</value>
+				<value>com.ahct.model.EhfmPnldocStatusMpg</value>
+		         <value>com.ahct.model.EhfAhcPatientTest</value>
+				<value>com.ahct.model.EhfmJournalist</value>
+				<value>com.ahct.model.EhfmHODMst</value>
+				<value> com.ahct.model.EhfEmpBiometricData</value> 
+		         <value> com.ahct.model.EhfEmpBiomOthLoginDtl</value> 
+		         <value> com.ahct.model.EhfEmpBiomOthLoginDtlPK</value> 
+		         <value> com.ahct.model.EhfEmpBioselfloginDtl</value> 
+		          <value> com.ahct.model.EhfEmpBioselfloginDtlPK</value> 
+                 <value>com.ahct.model.EhfDeptDsgnMpg</value>
+                  <value>com.ahct.model.EhfDeptDsgnMpgPK</value>
+                  <value>com.ahct.model.EhfmAhcInvestigationDtl</value>
+                  <value>com.ahct.model.EhfAhcCaseClaim</value>
+				  <value>com.ahct.model.EhfSurplusTdsClaim</value>
+				  <value>com.ahct.model.AsritSms</value>
+				  <value>com.ahct.model.EhfmMainTherapyNabh</value>
+				  <value>com.ahct.model.EhfmMainTherapyNabhId</value>
+				    <value>com.ahct.model.EhfPatientDrugsNabh</value>
+					<value>com.ahct.model.EhfmHospStayNIMS</value>
+					<value>com.ahct.model.EhfmHospQuantityNIMS</value>
+					<value>com.ahct.model.EhfmUserLoginDtls</value>
+					<value>com.ahct.model.MUrlFilter</value>
+					<value>com.ahct.model.MUrlFilterPK</value>
+					<value>com.ahct.model.EhfmBankAccountDtls</value>
+					<value>com.ahct.model.EhfOpdClaimAudit</value>
+					<value>com.ahct.model.EhfOpdClaimAuditPK</value>
+					<value>com.ahct.model.EhfOpdPatient</value>
+					<value>com.ahct.model.EhfOpdClaimDtls</value>
+					<value>com.ahct.model.EhfOncologyMedical</value>
+					<value>com.ahct.model.EhfOncologyDrugs</value>
+					<value>com.ahct.model.EhfOncologyDrugsPK</value>
+					<value>com.ahct.model.EhfOncologyTreatment</value>
+					<value>com.ahct.model.EhfOncologyCmteAudit</value>
+					<value>com.ahct.model.EhfOncologyCmteAuditPK</value>
+					<value>com.ahct.model.EhfOncologyOtpAudit</value>
+					<value>com.ahct.model.EhfOncologyCmteApprvl</value>
+					<!-- Chandana - 8326 - For Abha table-->
+                    <value>com.ahct.model.AbhaAddressDtls</value>
+                    <value>com.ahct.model.AbhaResponse</value>
+                    <!-- Chandana - 8441 - Below new model classes for nims opd claim cases -->
+                    <value>com.ahct.model.EhfOpdBillDtlsAttachment</value>
+                    <value>com.ahct.model.EhfOpdBillAttachAudit</value>
+                    <!-- Pravalika created new modal class for category and diagnosis in delhi journalist -->
+                    <value>com.ahct.model.EhfJrnlstPatientTherapy</value>
+		     <!-- CR 9043 Pravalika created new modal class for saving admission details for delhi journalist -->
+                    <value>com.ahct.model.EhfJrnlstdAdmEstDtls</value>
+		    <!-- Chandana - 8755 - New model class for Delhi journalist attachment table -->
+                    <value>com.ahct.model.EhfJrnlstDAttachment</value>
+                    <value>com.ahct.model.EhfJrnlstDClaimDtls</value>
+                    <value>com.ahct.model.EhfJrnlstdClaimAudit</value>
+                    <value>com.ahct.model.EhfJrnlstDClaimAuditPK</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.show_sql">
+					${hibernate.show_sql}
+				</prop>
+				<prop key="hibernate.format_sql">
+					${hibernate.format_sql}
+				</prop>
+				<prop key="hibernate.use_sql_comments">
+					${hibernate.use_sql_comments}
+				</prop>
+				<prop key="hibernate.hbm2ddl.auto">
+					${hibernate.hbm2ddl.auto}
+				</prop>
+				<prop key="hibernate.connection.retrieveMessagesFromServerOnGetMessage">
+					${hibernate.connection.retrieveMessagesFromServerOnGetMessage}
+				</prop>
+				<prop key="hibernate.connection.isolation">
+					2
+				</prop>
+				<prop key="hibernate.jdbc.batch_size">
+					0
+				</prop>
+				<prop key="hibernate.connection.datasource">
+					${hibernate.connection.datasource}
+				</prop>
+				<prop key="hibernate.connection.release_mode">
+					${hibernate.connection.release_mode}
+				</prop>
+			</props>
+		</property>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		lazy-init="true">
+		<property name="sessionFactory">
+			<ref bean="enterpriseSessionFactory" />
+		</property>
+	</bean>
+
+
+
+	<bean id="enterpriseHibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate"
+		lazy-init="true">
+		<property name="sessionFactory">
+			<ref bean="enterpriseSessionFactory" />
+		</property>
+	</bean>
+	<bean id="genericDao"
+		class="com.tcs.framework.persistanceConfiguration.HibernateTemplateSpringGenericDAO">
+		<property name="hibernateTemplate">
+			<ref bean="enterpriseHibernateTemplate" />
+		</property>
+	</bean>
+
+
+	<!-- Set up the dataSources -->
+	<bean id="enterpriseDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>${hibernate.connection.datasource}</value>
+		</property>
+	</bean>
+</beans>

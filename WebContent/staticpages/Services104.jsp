@@ -1,0 +1,139 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ include file="/Common/include.jsp"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="popupServices104">
+<h1 id="Services104Hed">Medical health related Services available to the residents @ 104</h1>
+<div id="Services104list_static">
+<ol>
+   <li><span class="firsthed">Health Advice :</span> Citizens can avail medical help discussing with the panel of doctors available around the clock and 7 day a week.</li>
+   <li><span class="firsthed">Counseling services :</span> A dedicated panel of counselors are at the service of citizens in need of any medical counselling related to disorders in behavioral, emotional, sleeping, sexual, eating, moods, personality, marriage, HIV/AIDS, stress, etc.</li>
+   <li><span class="firsthed">Directory information:</span>State wide directory information on the following are available.
+      <ol>
+         <li> Bloodlines</li>
+         <li>Dengue Diagnostics and platelets collection center</li>
+          <li>Eye Banks and collection center</li>
+           <li>Government institutions</li>
+            <li>Private institutions</li>
+             <li> Urban Centers(Hyderabad)</li>
+      </ol>
+   </li>
+   <li><span class="firsthed">Complaints Registration:</span> Citizen complaints on the following services are taken and transferred to the concerned departments.
+      <ol><li><span class="secondhed">General Medical  Complaints on government hospitals</span>
+          	<ol>
+         	<li>Relating Staff absence</li>
+        	<li>Service Deficiency</li>
+          	<li>Improper Behaviour</li>
+           	<li>Money collections</li>
+            <li>No Medicines</li>
+      		</ol>
+         </li>
+         <li><span class="secondhed">Commissioner of health and family welfare department complaints</span>
+             <ol><li>Maternal Grievances
+                <ol>
+                <li>New Born-30 days</li>
+                </ol>
+                </li>
+                <li>PC-PNDT(Pre conception and pre natal diagnostic techniques)
+                <ol>
+                <li>Sex Determination</li>
+                <li>Non registration</li>
+                <li>Mobile Unit</li>
+                </ol>
+                </li>
+                <li> Asha payments
+                <ol>
+                <li>Delay in Payments</li>
+                <li>Under Payments</li>
+                </ol>
+                </li>
+                 <li>Food Safety
+                <ol>
+                <li>Sale of adulterated food articles by the traders</li>
+                <li>Unhygenic conditions prevailing in the hotels/eating establishments</li>
+                <li>Sale of packaged drinking water without BIS Certification</li>
+                <li>Use of Calcium carbide in ripening of mangoes</li>
+                <li>Clarifications on the issue of licenses and regulations</li>
+                <li>General complaints relating to food safety and hygiene</li>
+                </ol>
+                </li>
+            </ol>
+            </li>
+            <li><span class="secondhed">108</span>
+                <ol>
+                 		<li>DMH(Director of Medical and Health)
+                        <ol>
+                        <li>Relating Staff Absence</li>
+                        <li>Service Deficiency</li>
+                        <li>Improper behaviour</li>
+                        <li>Money Collection</li>
+                        <li>No Medicine  </li>
+                        </ol>
+                        </li>
+                        <li>DH(Director of Health)
+                        <ol>
+                        <li>Relating Staff Absence</li>
+                        <li>Service Deficiency</li>
+                        <li>Improper behaviour</li>
+                        <li>Money Collection</li>
+                        <li>No Medicine  </li>
+                        </ol>
+                        </li>
+                         <!--<li>APVVP(Andhra Pradesh Vidya vidhana parishad)
+                        <ol>
+                        <li>Relating Staff Absence</li>
+                        <li>Service Deficiency</li>
+                        <li>Improper behaviour</li>
+                        <li>Money Collection</li>
+                        <li>No Medicine  </li>
+                        --></ol>                     
+                		</li>
+              </ol>
+         </li>
+         <li><span class="secondhed">Aarogyasri Scheme Complaints</span>
+           <ol><li>Preauth Requests</li>
+           <li>Money collection</li>
+           <li>Conversion</li>
+           <li>Followup Package Denial</li>
+           <li>Denial of Treatment</li>
+           <li>Denial of Admission</li>
+           <li>Request for treatment</li>
+           <li>Network Hospital Service Deficiency</li>
+           <li>Post-OP Complication</li>
+           <li>Reimbursement(out of package list)</li>
+           <li>Reimbursement( Within the package list)</li>
+           <li>Ration Card-New</li>
+           <li>Ration Card -Name/Photo Missing</li>
+           <li>Death Case</li>
+           <li>General Inquiry</li>
+           <li>Other complaints </li>
+           </ol>
+         </li>
+       </ol>    
+   </li>
+  <li><span class="firsthed">Employee Health Scheme Services @ 104:</span> State Government Employees have access to the following list of services.
+      <ol>
+         <li > Getting password for Employees, Pensioners, DDO, HOD, STO</li>
+      </ol>
+   </li>
+   <li><span class="firsthed">Aarogyasri Scheme Services @ 104:</span> Beneficiaries of Aarogyasri scheme have access to the below mentioned list of services through 104.
+      <ol>
+         <li> General Information on Aarogyasri Scheme</li>
+         <li> Appreciations and Feedback</li>
+         <li> Complaint registry on Aarogyasri</li>
+         <li> Getting Aarogyasri Patient Satisfaction feedback from Aarogyasri discharged patients</li>
+         <li> Getting Followup feedback on Aarogyasri Patients.</li>
+      </ol>
+   </li>
+<li><span class="firsthed">108 services @ 104:</span> Citizens in case of any emergency will be redirected to 108 for quick response and care. Any complaints or issues with 108 can be logged at 104.</li> 
+</ol>
+</div>
+</div>
+</body>
+</html>

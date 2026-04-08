@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+ <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+	   xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+				http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+				http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+				http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd"> 
+ <import resource="applicationContext.xml"/>
+ <task:annotation-driven />
+ <!--  trigger for generating bank files by ishank  -->
+ <bean id="claimGenerateBankFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  <property name="targetObject" ref="claimsFlowDAO" />
+  <property name="targetMethod" value="generateFile" />
+  <property name="concurrent" value="false"/>
+</bean>
+<bean id="generateTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+    <property name="jobDetail" ref="claimGenerateBankFile" />
+    <property name="startDelay" value="0"/> 
+    <property name="repeatInterval" value="7200000"/>
+</bean>
+<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+   <list>
+    <ref bean="generateTrigger"/>
+   </list>
+  </property>
+ </bean> 
+ 
+
+ 
+  <!--  trigger for generating bank files for erroeneous cases by venkatesh -->
+ <bean id="ErroneousclaimGenerateBankFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  <property name="targetObject" ref="claimsFlowDAO" />
+  <property name="targetMethod" value="generateERRFile" />
+  <property name="concurrent" value="false"/>
+</bean>
+<bean id="generateErrTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+    <property name="jobDetail" ref="ErroneousclaimGenerateBankFile" />
+    <property name="startDelay" value="0"/> 
+    <property name="repeatInterval" value="1800000"/>
+</bean>
+<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+   <list>
+    <ref bean="generateErrTrigger"/>
+   </list>
+  </property>
+ </bean>
+ 
+ 
+   <!--  trigger for generating bank files for followup cases by venkatesh -->
+ <bean id="FollowupclaimGenerateBankFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  <property name="targetObject" ref="claimsFlowDAO" />
+  <property name="targetMethod" value="generateFollowUpFile" />
+  <property name="concurrent" value="false"/>
+</bean>
+<bean id="generateFlupTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+    <property name="jobDetail" ref="FollowupclaimGenerateBankFile" />
+    <property name="startDelay" value="0"/> 
+    <property name="repeatInterval" value="1800000"/>
+</bean>
+<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+   <list>
+    <ref bean="generateFlupTrigger"/>
+   </list>
+  </property>
+ </bean>
+ 
+  
+ 
+   <!-- <bean id="medicalAuditCron" 
+ class="com.ahct.medicalAudit.service.MedicalAuditSchedular"> 
+   <property name="genericDao">
+   <ref bean="genericDao"/>
+  </property>
+ </bean> -->
+
+   <!-- trigger for reading bank sent files by ishank -->
+
+ <bean id="claimSentStatusUpdating" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  <property name="targetObject" ref="claimsFlowDAO" />
+  <property name="targetMethod" value="updateClaimStatusSentByBank" />
+  <property name="concurrent" value="false"/>
+</bean>
+<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+    <property name="jobDetail" ref="claimSentStatusUpdating" />
+    <property name="startDelay" value="0"/> 
+    <property name="repeatInterval" value="1800000"/>
+</bean>
+<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+   <list>
+    <ref bean="simpleTrigger"/>
+   </list>
+  </property>
+ </bean> 
+ 
+ 
+ 
+ 
+  <!-- 
+ <bean id="ahcCron" 
+ class="com.ahct.annualCheckUp.service.AhcScheduler"> 
+   <property name="genericDao">
+   <ref bean="genericDao"/>
+  </property>
+  <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+ </bean> -->
+ 
+ 
+ <!--  trigger for generating AHC bank files by Gayathri 
+ <bean id="ahcClaimGenerateBankFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  <property name="targetObject" ref="ahcClaimsDao" />
+  <property name="targetMethod" value="generateAHcFile" />
+  <property name="concurrent" value="false"/>
+</bean>
+<bean id="generateAHCTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+    <property name="jobDetail" ref="ahcClaimGenerateBankFile" />
+    <property name="startDelay" value="0"/> 
+    <property name="repeatInterval" value="1800000"/>
+</bean>
+<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+   <list>
+    <ref bean="generateAHCTrigger"/>
+   </list>
+  </property>
+ </bean>-->
+ 
+ 
+   <!--  trigger for reading AHC bank sent files by gayathri 
+
+ <bean id="ahcClaimSentStatusUpdating" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  <property name="targetObject" ref="ahcClaimsDao" />
+  <property name="targetMethod" value="updateClaimStatusSentByBank" />
+  <property name="concurrent" value="false"/>
+</bean>
+<bean id="simpleAhcbankTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+    <property name="jobDetail" ref="ahcClaimSentStatusUpdating" />
+    <property name="startDelay" value="0"/> 
+    <property name="repeatInterval" value="1800000"/>
+</bean>
+<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+   <list>
+    <ref bean="simpleAhcbankTrigger"/>
+   </list>
+  </property>
+ </bean>-->
+ <!-- END -->
+ 
+ 
+ 
+ 
+ <!--  trigger for generating CHRONIC OP bank files by venkatesh
+ <bean id="chronicClaimGenerateBankFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  <property name="targetObject" ref="chronicClaimsDao" />
+  <property name="targetMethod" value="generateChronicFile" />
+  <property name="concurrent" value="false"/>
+</bean>
+<bean id="generateCHRONICTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+    <property name="jobDetail" ref="chronicClaimGenerateBankFile" />
+    <property name="startDelay" value="0"/> 
+    <property name="repeatInterval" value="1800000"/>
+</bean>
+<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+   <list>
+    <ref bean="generateCHRONICTrigger"/>
+   </list>
+  </property>
+ </bean>
+ 
+ --> 
+   <!--  trigger for reading CHRONIC OP files sent by bank - VENKATESH 
+
+ <bean id="chronicClaimSentStatusUpdating" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  <property name="targetObject" ref="chronicClaimsDao" />
+  <property name="targetMethod" value="updateClaimStatusSentByBank" />
+  <property name="concurrent" value="false"/>
+</bean>
+<bean id="simpleChronicbankTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+    <property name="jobDetail" ref="chronicClaimSentStatusUpdating" />
+     <property name="startDelay" value="0"/> 
+    <property name="repeatInterval" value="1800000"/>
+</bean>
+<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+   <list>
+    <ref bean="simpleChronicbankTrigger"/>
+   </list>
+  </property>
+ </bean> -->
+ <!-- END -->
+ 
+  <!--Trigger for generating bank Journalist files by Namratha  -->
+<bean id="jrnlstClaimGenerateBankFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  <property name="targetObject" ref="claimsFlowDAO" />
+  <property name="targetMethod" value="jrnlstGenerateFile" />
+  <property name="concurrent" value="false"/>
+</bean>
+<bean id="jrnlstGenerateTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+    <property name="jobDetail" ref="jrnlstClaimGenerateBankFile" />
+    <property name="startDelay" value="0"/> 
+    <property name="repeatInterval" value="1800000"/>
+</bean>
+<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+   <list>
+    <ref bean="jrnlstGenerateTrigger"/>
+   </list>
+  </property>
+ </bean>
+ 
+ 
+ 
+ 
+ 
+ <!--Sending Bank File  By Smita :Start-->
+<bean id="banksentDetails" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  <property name="targetObject" ref="panelDocPayDao" />
+  <property name="targetMethod" value="updatePanelDocPayStatus" />
+  <property name="concurrent" value="false"/>
+</bean>
+<bean id="banksentTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+    <property name="jobDetail" ref="banksentDetails" />
+    <property name="startDelay" value="0" />
+     <property name="repeatInterval" value="3600000"/>
+</bean>
+<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+   <list>
+    <ref bean="banksentTrigger"/>
+   </list>
+  </property>
+ </bean>
+ 
+   <bean id="moneyCollection" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  <property name="targetObject" ref="flaggingDao" />
+  <property name="targetMethod" value="changeMoneyCollectionFlow" />
+  <property name="concurrent" value="false"/>
+</bean>
+<bean id="flagCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+    <property name="jobDetail" ref="moneyCollection" />
+    <property name="cronExpression" value="0 25 20 * * ?" />
+</bean>
+<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+   <list>
+    <ref bean="flagCronTrigger"/>
+   </list>
+  </property>
+ </bean> 
+ 
+   <bean id="panelDocInit" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  <property name="targetObject" ref="panelDocPayDao" />
+  <property name="targetMethod" value="panelDocInitialisation" />
+  <property name="concurrent" value="false"/>
+</bean>
+<bean id="panelDocInitCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+    <property name="jobDetail" ref="panelDocInit" />
+      <property name="cronExpression" value="0 0 06 21 * ?" />
+</bean>
+<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+   <list>
+    <ref bean="panelDocInitCronTrigger"/>
+   </list>
+  </property>
+ </bean>  
+ 
+ <!--Added by ramalakshmi for autocancellation cases scheduler  -->
+ <bean id="AutoCancelCasesScheduler" 
+ class="com.ahct.preauth.service.AutoCancelCasesScheduler"> 
+   <property name="genericDao">
+   <ref bean="genericDao"/>
+  </property>
+ </bean>
+     <bean id="autoCancelCases" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  <property name="targetObject" ref="AutoCancelCasesScheduler" />
+  <property name="targetMethod" value="cancelPendingCases" />
+  <property name="concurrent" value="false"/>
+</bean>
+<bean id="autoCancelCasesCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+    <property name="jobDetail" ref="autoCancelCases" />
+      <property name="cronExpression" value="0 01 00 ? * *" />
+</bean>
+<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+   <list>
+    <ref bean="autoCancelCasesCronTrigger"/>
+   </list>
+  </property>
+ </bean>
+ <!--End of autocancellation cases scheduler  -->
+ 
+ 
+ <!--Genarate XML Bank File for Claims -->
+  
+  <bean id="genXmlBankFile" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+  <property name="targetObject" ref="claimsGenFileDAO" />
+  <property name="targetMethod" value="xmlFileGeneration" />
+  <property name="concurrent" value="false"/>
+</bean>
+<bean id="generateXmlCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+    <property name="jobDetail" ref="genXmlBankFile" />
+      <property name="cronExpression" value="0 0 8,9 * * ?" />
+</bean>
+<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+   <list>
+    <ref bean="generateXmlCronTrigger"/>
+   </list>
+  </property>
+ </bean> 
+ 
+ 
+ 
+ </beans>

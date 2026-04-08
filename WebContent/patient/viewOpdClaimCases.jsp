@@ -1,0 +1,456 @@
+<%
+/**
+* FILENAME     : viewOpdClaimCases.jsp
+* @AUTHOR      : Chandana Daruri	
+* --------------------------------------------------------------
+* Change Id       AUTHOR          DESCRIPTION
+* ---------------------------------------------------------------
+*  8602		   Chandana Daruri    Jsp to view the list of OPD claim cases
+*    
+* --------------------------------------------------------------
+**/
+%>
+<!DOCTYPE html>
+<%@ page pageEncoding="UTF-8"%>
+<%@ taglib uri="/WEB-INF/tld/struts-logic.tld" prefix="logic"%>
+<%@ taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean"%>
+<%@ taglib uri="/WEB-INF/tld/struts-html.tld" prefix="html"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
+<%@ include file="/common/include.jsp"%>
+<html>
+<fmt:setLocale value='${langID}'/>  
+<fmt:bundle basename="ApplicationResources">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>OPD Claim Cases</title>
+<link href="css/themes/<%=themeColour%>/commonEhfCss.css" rel="stylesheet" type="text/css" media="screen">
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<style type="text/css">.centerone{padding-left:6%;}</style>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/PreauthScripts.js"></script>
+<script src="js/jquery.msgBox.js"></script>
+<script src="bootstrap/js/bootbox.min.js"></script>
+<%@ include file="/common/includeCalendar.jsp"%>  
+<%@ include file="/common/editableComboBox.jsp"%>  
+<%@ include file="/common/includePatientDetails.jsp"%>  
+<style> #ui-id-4{ width:15%; }#ui-id-6,#ui-id-3,#ui-id-1,#ui-id-2,#ui-id-5 { width:35%; }
+  .custom-combobox-input {    margin: 0;    padding: 0.3em; background:#fff;border:1px solid #e6e6e6; }
+  .dataTables_length {
+      margin-top: 24px;
+  	  margin-left: 16px;
+  }
+  .dt-button.buttons-excel.buttons-html5 {
+  margin-top: 20px;
+}
+  
+body{font-size:1.2em !important;}
+</style>
+
+<link rel="stylesheet" type="text/css" href="bootstrap/css/datepicker3.css" />
+<link href="bootstrap/css/static.jquery.dataTables.css" rel="stylesheet">
+<link href="bootstrap/css/buttons_dataTables.css" rel="stylesheet">
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootbox.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootbox.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/jquery-dataTables.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/dataTables-buttons.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/buttons-html5.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/vfs_fonts.js"></script>
+<script type="text/javascript" src="bootstrap/js/jszip.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/pdfmake.min.js"></script>
+<script src="bootstrap/js/static.jquery.dataTables.js"></script>
+<script type="text/javascript">
+var $ = jQuery.noConflict();
+var todayDt = new Date();
+$(document).ready(function(){
+	$('#claimDate').datepicker({
+		format: 'dd/mm/yyyy',
+		autoclose: true,
+    	endDate: todayDt,
+    	orientation: 'top auto',
+		todayHighlight: true,
+		defaultDate: "+1w",
+		changeMonth: true,
+		changeYear: true,
+		showOn: "both", 
+        buttonImage: "images/calend.gif", 
+        buttonText: "Calendar",
+        buttonImageOnly: true ,
+		numberOfMonths: 1,
+		maxDate: new Date(y, m, d),
+		yearRange: '2000:' + new Date().getFullYear(),
+	});
+	$('#claimCasesListTable').DataTable({
+        dom: 'lBfrtip',
+        buttons: [{
+            extend: 'excelHtml5',
+            text: 'Excel',
+            title: 'opClaimCasesList'
+        }],
+        columnDefs: [{
+            "targets": '_all',
+            "orderable": false
+        }],
+        pageLength: 10
+    });
+	document.getElementById('claimsStatus').style.display = 'block';
+	document.getElementById('claimsStatus-input').style.display = 'none';
+});
+
+var diaPendFlg="${diaPendFlg}";
+var caseSearchURl='';
+function focusBox(id)
+{
+	aField=id;
+	setTimeout("aField.focus()",0);
+}
+function fn_loadImage()
+{
+	document.getElementById('processImagetable').style.display="";
+}
+function fn_removeLoadingImage()  
+{
+	document.getElementById('processImagetable').style.display="none";  
+}
+
+var casesSelected=[];
+var cases;
+
+function fn_checkAll() {
+    var elements = document.getElementsByClassName("selectableCheckbox");
+    casesSelected = [];
+    var countTemp = 0;
+    for (var i = 1; i < elements.length; i++) {
+        if (document.getElementById("checkAll").checked) {
+            elements[i].checked = true;
+            casesSelected.push(elements[i].value);
+            countTemp++;
+        } else {
+            elements[i].checked = false;
+        }
+    }
+    var hiddenField = document.getElementById("caseSelected");
+    if (hiddenField) {
+        hiddenField.value = document.getElementById("checkAll").checked ? casesSelected.join("~") : "";
+    }
+    if (document.getElementById("checkAll").checked)
+        document.getElementById("verifyBut").focus();
+}
+
+var allSelectedCases = new Set();
+var casesSelected = [];
+
+function checkOrUncheckCase() {
+    var elements = document.querySelectorAll('input[type="checkbox"][id^="CheckBox"]');
+    var checkMissCasesSelected = "N";
+    for (var i = 0; i < elements.length; i++) {
+        var el = elements[i];
+        if (el.checked) {
+            if (checkMissCasesSelected === "Y") {
+                bootbox.alert("Please select checkboxes in FIFO order");                
+                document.getElementById("checkAll").checked = false;
+                elements.forEach(function(e) { e.checked = false; });
+                allSelectedCases.clear();
+                casesSelected = [];
+                var hiddenField = document.getElementById("caseSelected");
+                if (hiddenField) hiddenField.value = "";
+                return false;
+            }
+        } else
+            checkMissCasesSelected = "Y";
+    }
+    elements.forEach(function(el) {
+        if (el.checked)
+            allSelectedCases.add(el.value);
+        else
+            allSelectedCases.delete(el.value);
+    });
+    casesSelected = Array.from(allSelectedCases);
+    var hiddenField = document.getElementById("caseSelected");
+    if (hiddenField)
+        hiddenField.value = casesSelected.join("~");
+}
+
+function fn_buttonClicked(action) {
+    var count = 0;
+    var hiddenField = document.getElementById("caseSelected");
+    var cases = "";
+    if (hiddenField && hiddenField.value !== undefined) {
+        cases = hiddenField.value.trim();
+        if (cases !== "") {
+            var tmp = cases.split("~").filter(function(s){ return s !== null && s.toString().trim() !== ""; });
+            count = tmp.length;
+        } else
+            count = 0;
+    } else if (typeof casesSelected !== "undefined" && casesSelected !== null) {
+        for (var i = 0; i < casesSelected.length; i++) {
+            if (casesSelected[i] != null && casesSelected[i] !== "") {
+                count++;
+                if (cases === "") 
+                	cases = casesSelected[i];
+                else 
+                	cases = cases + "~" + casesSelected[i];
+            }
+        }
+    }
+    if (count === 0) {
+        alert("No cases are Selected.please select and try Again");
+        return false;
+    }
+    if (confirm("Do You Wish to Verify Selected Cases ?")) {
+        var verifyBtn = document.getElementById('verifyBut');
+        if (verifyBtn) verifyBtn.disabled = true;
+        fn_loadImage && fn_loadImage();
+        //var encodedCases = encodeURIComponent(cases);
+        document.forms[0].action="/Operations/ClaimsFlow.do?actionFlag=opdClaimsBulkApproval&acoFlag=Y&cases="+cases+"&actionDone="+action;
+        document.forms[0].submit();
+    } else {
+        return false;
+    }
+}
+
+</script>
+</head>
+<body onload="fn_removeLoadingImage();">
+<html:form method="post"  action="/casesSearchAction.do" > 
+<input type="hidden" name="caseSelected" id="caseSelected" value="">
+<div id="processImagetable" style="top:50%;position:absolute;z-index:60;height:100%">
+<table border="0" align="center" width="100%" style="height:400" >
+   <tr>
+      <td>
+        <div id="processImage" align="center">
+          <img src="images/Progress.gif" width="100"
+                  height="100" border="0" style="margin-left:25%;"></img>
+         </div>
+       </td>
+     </tr>
+  </table>
+</div>
+<div class="panel-group" id="accordion">
+	<div class="panel panel-default">
+		<div class="tbheader">
+			<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" title="Click to search" style="color:#fff; display:block;">
+	         	<span class="glyphicon glyphicon-plus"></span>
+	         	<span><b>OP Claim Cases</b></span>
+			</a>
+    	</div>
+    <div id="collapseOne" class="panel-collapse collapse">
+    	<div class="panel-body">
+    		<table border="0" width="95%"  cellpadding="1" cellspacing="1" align="center" style="padding-top:0px;margin:0px auto;" >
+			<tr><td>
+				<table width="100%" class="tb">
+					<tr><td>
+						<table width="100%" >
+							<tr>
+								<td width="16%" class="labelheading1 tbcellCss"><b>Patient Number</b></td>
+								<td width="16%" class="tbcellBorder"><input type="text" id="patientNo" name="patientNo" style="width:180px;" maxlength="50"></td>
+								<td  width="16%" class="labelheading1 tbcellCss"><b>Card Number</b></b></td>
+								<td width="16%" class="tbcellBorder"><input type="text" id="cardNo" name="cardNo" style="width:180px;" maxlength="50"></td>
+								<td width="16%" class="labelheading1 tbcellCss"><b>Claim Status</b></td><!-- Chandana - 7845 - to show the claim status dropdown -->
+								<td width="16%" class="tbcellBorder">
+		  							<select id="claimsStatus" name="claimsStatus" style="width:180px;">
+		  								<option value="-1">--Select--</option>
+				    					<c:forEach var="status" items="${claimStatusList}">
+				        				<option value="${status.ID}">${status.VALUE}</option>
+				    					</c:forEach>
+		  							</select>
+								</td>
+							</tr>
+							<tr>
+								<td width="16%" class="labelheading1 tbcellCss"><b>Claim Submitted No</b></td>
+								<td width="16%" class="tbcellBorder"><input type="text" id="claimSubmittedNo" name="claimSubmittedNo" style="width:180px;" maxlength="50"></td>
+								<td width="16%" class="labelheading1 tbcellCss"><b>Claims Date</b></td>
+								<td width="16%" class="tbcellBorder"><input type="text" id="claimDate" name="claimDate" style="width:150px;" maxlength="50"></td>
+							</tr>
+							<tr><td>&nbsp;</td></tr>	
+							<tr><td align="center" colspan="6">
+								<button class="but" type="button" name="Search" value="Search" onclick="javascript:fn_search()">Search</button>
+								<button class="but" type="button" name="Reset" value="Reset" onclick="javascript:fn_reset()">Reset</button>
+								</td>
+							</tr></table></td></tr>
+						</table>
+					</td></tr>
+				</table>
+    		</div>
+    	</div>
+  	</div>
+</div>
+<c:if test="${not empty opClaimCasesList}">
+	<div id="tableContainer">
+		<table id="claimCasesListTable" width="98%"  cellpadding="1" cellspacing="1" align="center" style="padding-top:0px;margin:0px auto;" class="tb">
+			<thead>
+				<tr>
+		     		<th class="tbheader1" width="5%"  >
+		      			<label><input type="checkbox" id="checkAll"  class="selectableCheckbox"   title="click here to select all Cases" onclick="javascript:fn_checkAll();"  /></label>
+		    		</th>
+					<th class="tbheader1" width="10%" valign="top"><fmt:message key='label.caseSearch.claimNo' /></th>
+					<th class="tbheader1" width="15%" valign="top"><fmt:message key="label.caseSearch.patientName" /></th>
+					<th class="tbheader1" width="10%" valign="top"><fmt:message key="label.caseSearch.wapNo" /></th>
+					<th class="tbheader1" width="10%" valign="top"><fmt:message key="label.caseSearch.claimStatus" /></th>
+					<th class="tbheader1" width="10%" valign="top">Hospital Name</th>
+					<th class="tbheader1" width="10%" valign="top"><fmt:message key="label.caseSearch.regdate" /></th>
+					<th class="tbheader1" width="7%" valign="top"><fmt:message key="label.caseSearch.claimAmt" /></th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="opClaimCases" items="${opClaimCasesList}" varStatus="loop">
+				<tr> 
+		       		<td class="tbcellBorder" width="5%" align="center">
+		      			<label><input type="checkbox" id="CheckBox${count}" class="selectableCheckbox" value="${opClaimCases.CLAIMNO}" onclick="javascript:checkOrUncheckCase();"></input></label>
+		    		</td>
+		    		<td class="tbcellBorder" style="word-wrap:break-word;padding:3px;text-align: center;">
+		    			 <span style="color:blue;cursor:pointer;"onclick="fn_openOpdClaimCaseDtls('${opClaimCases.CLAIMNO}','${opClaimCases.COUNT}','${opClaimCases.CARDNO}');">${opClaimCases.CLAIMNO}</span>
+		    		</td>
+		        	<td class="tbcellBorder" style="word-wrap:break-word;padding:3px;text-align: center;">${opClaimCases.PNAME}</td>
+		        	<td class="tbcellBorder" style="word-wrap:break-word;padding:3px;text-align: center;">${opClaimCases.EHFCARDNO}</td>
+		        	<td class="tbcellBorder" style="word-wrap:break-word;padding:3px;text-align: center;">${opClaimCases.VALUE}</td>
+		        	<td class="tbcellBorder" style="word-wrap:break-word;padding:3px;text-align: center;">NIMS Hospitals</td>
+		        	<td class="tbcellBorder" style="word-wrap:break-word;padding:3px;text-align: center;">${opClaimCases.CLAIMDT}</td>
+		        	<td class="tbcellBorder" style="word-wrap:break-word;padding:3px;text-align: center;">${opClaimCases.SNO}</td>
+      			</tr>
+      			</c:forEach>
+			</tbody>
+		</table>
+	</div>
+	<div id="buttonDiv" style="margin-left:48%">
+		<button class="but btn btn-danger"   id="verifyBut" type="button"  value="Verify"  name="CD73" onclick="javascript:fn_buttonClicked('Approve');">Verify</button>
+	</div>
+</c:if>
+<c:if test="${empty opClaimCasesList}">
+	<div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group " style="text-align:center">
+		<h5><b>NO RECORDS FOUND</b></h5>
+	</div>
+</c:if>
+</html:form>
+
+<script type="text/javascript">
+var $ = jQuery.noConflict();
+function fn_openOpdClaimCaseDtls(patientId,seqId,crNo){
+	if(patientId == null || patientId == ''){
+		return false;
+	}
+	if(parent.parent.globalURl == ''){
+		parentSearchUrl = '/Operations/patientDetails.do?actionFlag=getOpClaimCaseDtls&patientId='+patientId+'&acoFlag=Y&seqId='+seqId+'&crNo='+crNo;
+		parent.setGlobalUrl(parentSearchUrl);
+	}
+	fn_loadImage();
+	document.forms[0].action='/Operations/patientDetails.do?actionFlag=getOpClaimCaseDtls&patientId='+patientId+'&acoFlag=Y&seqId='+seqId+'&crNo='+crNo;
+	document.forms[0].submit();
+}
+	
+function fn_search() {
+    var patientId = document.getElementById('patientNo').value;
+    var cardNo = document.getElementById('cardNo').value; 
+    var claimDt = document.getElementById('claimDate').value;
+    var claimSubmittedNo = document.getElementById('claimSubmittedNo').value;
+    var claimStatus = document.getElementById('claimsStatus').value;
+    if (claimStatus == '-1' && patientId.trim() == '' && cardNo.trim() == '' && claimDt == '' && claimSubmittedNo == '') {
+        jqueryAlertMsg('Cases Search', 'Please select any search criteria');
+        return false;		
+    }
+    if (claimDt) {
+        var dateParts = claimDt.split('/');
+        claimDt = dateParts[1] + '/' + dateParts[0] + '/' + dateParts[2];
+    }
+    fn_loadImage();
+
+    $.ajax({
+        type: "POST",
+        url: "/Operations/ClaimsFlow.do?actionFlag=getNimsOpdClaimCasesforACOApproval&ajaxCall=Y",
+        data: {
+            patientId: patientId,
+            cardNo: cardNo,
+            claimDt: claimDt,
+            claimSubmittedNo: claimSubmittedNo,
+            claimStatus: claimStatus,
+        },
+        success: function (data) {
+            var responseData = JSON.parse(data);
+            $('#tableContainer').html('');
+
+            if (responseData && responseData.length > 0) {
+                var tableHTML = '<table id="claimCasesListTable" width="98%" cellpadding="1" cellspacing="1" align="center" style="padding-top:0px;margin:0px auto;" class="tb">';
+                tableHTML += '<thead><tr>';
+                tableHTML += '<th class="tbheader1" width="5%"><label><input type="checkbox" id="checkAll" class="selectableCheckbox" title="click here to select all Cases" onclick="javascript:fn_checkAll();" /></label></th>';
+                tableHTML += '<th class="tbheader1" width="10%" valign="top">Claim No</th>';
+                tableHTML += '<th class="tbheader1" width="15%" valign="top">Patient Name</th>';
+                tableHTML += '<th class="tbheader1" width="10%" valign="top">WAP No</th>';
+                tableHTML += '<th class="tbheader1" width="10%" valign="top">Claim Status</th>';
+                tableHTML += '<th class="tbheader1" width="10%" valign="top">Hospital Name</th>';
+                tableHTML += '<th class="tbheader1" width="10%" valign="top">Reg Date</th>';
+                tableHTML += '<th class="tbheader1" width="7%" valign="top">Claim Amount</th>';
+                tableHTML += '</tr></thead><tbody>';
+
+                $.each(responseData, function (index, opClaimCases) {
+                    tableHTML += '<tr>';
+                    tableHTML += '<td class="tbcellBorder" width="5%" align="center">';
+                    tableHTML += '<label><input type="checkbox" id="CheckBox' + (index + 1) + '" class="selectableCheckbox" value="' + opClaimCases.CLAIMNO + '" onclick="javascript:checkOrUncheckCase();"></label>';
+                    tableHTML += '</td>';
+
+                    // Claim No clickable
+                    tableHTML += '<td class="tbcellBorder" style="word-wrap:break-word;padding:3px;text-align:center;">' +
+                        '<span style="color:blue;cursor:pointer;" onclick="fn_openOpdClaimCaseDtls(\'' + opClaimCases.CLAIMNO + '\', \'' + (index + 1) + '\', \'' + opClaimCases.CARDNO + '\');">' + opClaimCases.CLAIMNO + '</span></td>';
+
+                    tableHTML += '<td class="tbcellBorder" style="word-wrap:break-word;padding:3px;text-align:center;">' + (opClaimCases.PNAME || '') + '</td>';
+                    tableHTML += '<td class="tbcellBorder" style="word-wrap:break-word;padding:3px;text-align:center;">' + (opClaimCases.EHFCARDNO || '') + '</td>';
+                    tableHTML += '<td class="tbcellBorder" style="word-wrap:break-word;padding:3px;text-align:center;">' + (opClaimCases.VALUE || '') + '</td>';
+                    tableHTML += '<td class="tbcellBorder" style="word-wrap:break-word;padding:3px;text-align:center;">NIMS Hospitals</td>';
+                    tableHTML += '<td class="tbcellBorder" style="word-wrap:break-word;padding:3px;text-align:center;">' + (opClaimCases.CLAIMDT || '') + '</td>';
+                    tableHTML += '<td class="tbcellBorder" style="word-wrap:break-word;padding:3px;text-align:center;">' + (opClaimCases.SNO || '') + '</td>';
+                    tableHTML += '</tr>';
+                });
+
+                tableHTML += '</tbody></table>';
+                $('#tableContainer').html(tableHTML);
+
+                $('#claimCasesListTable').DataTable({
+                    dom: 'lBfrtip',
+                    buttons: [{
+                        extend: 'excelHtml5',
+                        text: 'Excel',
+                        title: 'opClaimCasesList'
+                    }],
+                    columnDefs: [{
+                        "targets": '_all',
+                        "orderable": false
+                    }],
+                    pageLength: 15
+                });
+                $('#claimCasesListTable').show();
+            } else {
+            	$('#verifyBut').hide();
+                $('#tableContainer').html('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group" style="text-align:center"><h5><b>NO RECORDS FOUND</b></h5></div>');
+            }
+            fn_removeLoadingImage();
+        },
+        error: function () {
+            jqueryAlertMsg('Cases Search', 'An error occurred while processing your request.');
+        }
+    });
+}
+
+function fn_reset(){
+	document.getElementById('patientNo').value = '';
+    document.getElementById('cardNo').value = '';
+    document.getElementById('claimDate').value = '';
+    document.getElementById('claimSubmittedNo').value = '';
+    document.getElementById('claimsStatus').value = '-1';
+	document.getElementById('claimDate').value='';
+	if(parent.parent.globalURl == ''){
+		parentSearchUrl = '/Operations/ClaimsFlow.do?actionFlag=getNimsOpdClaimCasesforACOApproval';
+		parent.setGlobalUrl(parentSearchUrl);
+	}
+	fn_loadImage();
+	document.forms[0].action='/Operations/ClaimsFlow.do?actionFlag=getNimsOpdClaimCasesforACOApproval';
+	document.forms[0].submit();
+}
+
+parent.fn_removeLoadingImage();
+</script>
+</body>
+</fmt:bundle>
+</html>

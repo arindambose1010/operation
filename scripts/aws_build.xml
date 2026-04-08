@@ -1,0 +1,288 @@
+
+<project name="Operations" default="warIt" basedir=".">
+
+
+    <!-- Read in properties unique to this environment -->
+    <property file="base.properties" />
+    <property name="home.dir" value="${basedir}/.." /> <!-- needed for cc.init.xml -->
+
+
+    <!-- ==================== Init Target ==================== -->
+    <target name="init" description="define build properties">
+        <tstamp>
+            <format property="timestamp" pattern="yyyy.MM.dd-HH.mm"/>
+        </tstamp>
+
+        <!-- Read in properties unique to this environment -->
+        <property file="base.properties"/>
+        <property name="build.compiler" value="javac1.7"/>
+
+        <!-- Define app variables for this project -->
+        <property name="home.dir" value="${basedir}/../"/>
+        <property name="app.name" value="Claim"/>
+        <property name="src.dir" value="${home.dir}/src"/>
+        <property name="properties.dir" value="${home.dir}/properties"/>
+        <property name="java.package" value="com.tcs"/>
+
+        <!-- Define deploy variables for this project -->
+        <property name="web.dir" value="${home.dir}/WebContent"/>
+    	<property name="webinf.dir" value="${home.dir}/WebContent/WEB-INF" />
+        <property name="classes.dir" value="${webinf.dir}/classes"/>
+        <property name="lib.dir" value="${webinf.dir}/lib"/>
+    	
+		<!-- Directory to use for packaging of this project -->
+        <property name="aws_properties.dir" value="${home.dir}/Trust_XML_Files"/>
+		<property name="package.dir" value="${home.dir}/aws_Trust_package"/>
+    	<!--<property name="ExtJs.dir" value="${web.dir}/extjsnew"/> -->
+    </target>
+
+    <!-- ==================== Clean Target ==================== -->
+    <target name="clean"  description="delete build directories" depends="init">
+        <delete includeEmptyDirs="true" failonerror="false">
+            <fileset dir="${classes.dir}"/>
+            <fileset dir="${lib.dir}"/>
+			<fileset dir="${package.dir}"/>
+        </delete>
+    </target>
+
+    <!-- ==================== Prepare Target ==================== -->
+    <target name="prepare" depends="clean" description="prepare the build directories">
+
+        <mkdir dir="${package.dir}"/>
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${lib.dir}"/>
+
+    	<copy todir="${lib.dir}" file="${CommonComponents.jar}"/>
+    	<copy todir="${lib.dir}" file="${antlr.jar}"/>
+    	<copy todir="${lib.dir}" file="${asm.jar}"/>
+    	<copy todir="${lib.dir}" file="${aspectjrt.jar}"/>
+   		<copy todir="${lib.dir}" file="${cglib-nodep.jar}"/>
+   		<copy todir="${lib.dir}" file="${commons-beanutils-1.9.0.jar}"/>
+   		<copy todir="${lib.dir}" file="${commons-codec.jar}"/>
+   		<copy todir="${lib.dir}" file="${commons-collections.jar}"/>
+   		<copy todir="${lib.dir}" file="${commons-configuration.jar}"/>
+    	<copy todir="${lib.dir}" file="${commons-dbcp.jar}"/>
+    	<copy todir="${lib.dir}" file="${commons-configuration.jar}"/>
+		<copy todir="${lib.dir}" file="${commons-fileupload.jar}"/>
+    	<!--<copy todir="${lib.dir}" file="${commons-logging-1.0.4.jar}"/>-->
+		<copy todir="${lib.dir}" file="${commons-io.jar}"/>
+		<copy todir="${lib.dir}" file="${commons-lang.jar}"/>
+		<copy todir="${lib.dir}" file="${commons-pool.jar}"/>
+		<copy todir="${lib.dir}" file="${dom4j.jar}"/>
+		<copy todir="${lib.dir}" file="${hibernate-annotations.jar}"/>
+    	<copy todir="${lib.dir}" file="${hibernate-commons-annotations.jar}"/>
+    	<copy todir="${lib.dir}" file="${hibernate-annotations.jar}"/>
+		<copy todir="${lib.dir}" file="${hibernate-entitymanager.jar}"/>
+		<copy todir="${lib.dir}" file="${hibernate-validator.jar}"/>
+		<copy todir="${lib.dir}" file="${hibernate3.jar}"/>
+		<copy todir="${lib.dir}" file="${jasypt.jar}"/>
+		<copy todir="${lib.dir}" file="${jettison.jar}"/>
+		<copy todir="${lib.dir}" file="${json.jar}"/>
+    	<copy todir="${lib.dir}" file="${gson.jar}"/>
+    	<copy todir="${lib.dir}" file="${jstl-1.2.jar}"/>
+    	<copy todir="${lib.dir}" file="${activation-1.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${axiom-api-1.2.8.jar}"/>
+    	<copy todir="${lib.dir}" file="${axiom-dom-1.2.8.jar}"/>
+    	<copy todir="${lib.dir}" file="${axiom-impl-1.2.8.jar}"/>
+    	<copy todir="${lib.dir}" file="${axis2-adb-1.5.1.jar}"/>
+    	<!--<copy todir="${lib.dir}" file="${axis2-adb-codegen-1.5.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${axis2-ant-plugin-1.5.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${axis2-clustering-1.5.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${axis2-codegen-1.5.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${axis2-corba-1.5.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${axis2-fastinfoset-1.5.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${axis2-java2wsdl-1.5.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${axis2-jaxbri-1.5.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${axis2-jaxws-1.5.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${axis2-jibx-1.5.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${axis2-json-1.5.1.jar}"/>		
+		<copy todir="${lib.dir}" file="${axis2-metadata-1.5.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${axis2-mtompolicy-1.5.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${axis2-saaj-1.5.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${axis2-spring-1.5.1.jar}"/>		
+		<copy todir="${lib.dir}" file="${axis2-xmlbeans-1.5.1.jar}"/> 
+		<copy todir="${lib.dir}" file="${BiomServer.jar}"/>
+    	<copy todir="${lib.dir}" file="${barbecue-1.5-beta1.jar}"/>
+    	<copy todir="${lib.dir}" file="${barcode.jar}"/>
+    	<copy todir="${lib.dir}" file="${bcel-5.1.jar}"/>		
+		<copy todir="${lib.dir}" file="${geronimo-annotation_1.0_spec-1.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${geronimo-jaxws_2.1_spec-1.0.jar}"/>
+    	<copy todir="${lib.dir}" file="${geronimo-saaj_1.3_spec-1.0.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${geronimo-stax-api_1.0_spec-1.0.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${geronimo-ws-metadata_2.0_spec-1.1.2.jar}"/>		
+		<copy todir="${lib.dir}" file="${jalopy-1.5rc3.jar}"/>
+    	<copy todir="${lib.dir}" file="${jaxb-api-2.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${jaxb-impl-2.1.7.jar}"/>
+    	<copy todir="${lib.dir}" file="${jaxb-xjc-2.1.7.jar}"/>
+    	<copy todir="${lib.dir}" file="${jaxen-1.1.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${jettison-1.0-RC2.jar}"/>
+    	<copy todir="${lib.dir}" file="${jibx-bind-1.2.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${jibx-run-1.2.1.jar}"/>-->
+    	<copy todir="${lib.dir}" file="${axis2-kernel-1.5.1.jar}"/>    	
+    	<copy todir="${lib.dir}" file="${axis2-transport-http-1.5.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${axis2-transport-local-1.5.1.jar}"/>    	
+    	<copy todir="${lib.dir}" file="${commons-httpclient-3.1.jar}"/>    	
+    	<copy todir="${lib.dir}" file="${httpcore-4.0.jar}"/>    	
+    	<copy todir="${lib.dir}" file="${mex-1.5.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${neethi-2.0.4.jar}"/>
+    	<copy todir="${lib.dir}" file="${smack-3.0.4.jar}"/>
+    	<copy todir="${lib.dir}" file="${smackx-3.0.4.jar}"/>
+    	<copy todir="${lib.dir}" file="${soapmonitor-1.5.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${woden-api-1.0M8.jar}"/>
+    	<copy todir="${lib.dir}" file="${woden-impl-dom-1.0M8.jar}"/>
+    	<copy todir="${lib.dir}" file="${wsdl4j-1.6.2.jar}"/>
+    	<copy todir="${lib.dir}" file="${wstx-asl-3.2.4.jar}"/>
+    	<copy todir="${lib.dir}" file="${xalan-2.7.1.jar}"/>
+    	<copy todir="${lib.dir}" file="${xml-resolver-2.11.0.jar}"/>
+    	<copy todir="${lib.dir}" file="${XmlSchema-1.4.3.jar}"/>  
+    	<copy todir="${lib.dir}" file="${xmlbeans-2.3.0.jar}"/>
+		<copy todir="${lib.dir}" file="${jta.jar}"/>
+		<copy todir="${lib.dir}" file="${log4j.jar}"/>
+		<copy todir="${lib.dir}" file="${ojdbc6.jar}"/>
+		<copy todir="${lib.dir}" file="${quartz-all.jar}"/>
+		<copy todir="${lib.dir}" file="${regexp.jar}"/>
+		<copy todir="${lib.dir}" file="${displaytag-1.2.jar}"/>
+    	<copy todir="${lib.dir}" file="${jxl.jar}"/>
+    	<copy todir="${lib.dir}" file="${displaytag-portlet-1.2.jar}"/>
+    	<copy todir="${lib.dir}" file="${displaytag-export-poi-1.2.jar}"/>
+    	<copy todir="${lib.dir}" file="${j2ee-1.4.jar}"/>
+    	<copy todir="${lib.dir}" file="${itext-2.1.7.jar}"/>
+    	<copy todir="${lib.dir}" file="${SMSService.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.aop-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.asm-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.aspects-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.beans-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.context-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.context.support-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.core-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.expression-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.instrument-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.instrument.tomcat-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.jdbc-3.1.0.M2.jar}"/>
+		<copy todir="${lib.dir}" file="${org.springframework.spring-library-3.1.0.M2.libd}"/>
+		<copy todir="${lib.dir}" file="${org.springframework.test-3.1.0.M2.jar}"/>
+		<copy todir="${lib.dir}" file="${org.springframework.web.portlet-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.jms-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.orm-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.oxm-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.transaction-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.web-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.web.servlet-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.springframework.web.struts-3.1.0.M2.jar}"/>
+    	<copy todir="${lib.dir}" file="${poi-3.10-beta2-20130904.jar}"/>
+    	<copy todir="${lib.dir}" file="${poi-ooxml-3.10-beta2-20130904.jar}"/>
+    	<copy todir="${lib.dir}" file="${spring.jar}"/>
+		<copy todir="${lib.dir}" file="${standard.jar}"/>
+		<copy todir="${lib.dir}" file="${struts-core.jar}"/>
+		<copy todir="${lib.dir}" file="${struts-el.jar}"/>
+		<copy todir="${lib.dir}" file="${struts-extras.jar}"/>
+		<copy todir="${lib.dir}" file="${struts-faces.jar}"/>
+		<copy todir="${lib.dir}" file="${struts-mailreader-dao.jar}"/>
+		<copy todir="${lib.dir}" file="${struts-taglib.jar}"/>
+		<copy todir="${lib.dir}" file="${struts-scripting.jar}"/>
+    	<copy todir="${lib.dir}" file="${struts-tiles.jar}"/>
+    	<copy todir="${lib.dir}" file="${struts.jar}"/>
+		<copy todir="${lib.dir}" file="${velocity.jar}"/>
+		<copy todir="${lib.dir}" file="${xercesImpl-2.11.0.jar}"/>
+    	<copy todir="${lib.dir}" file="${servlet-api.jar}"/>
+    	<copy todir="${lib.dir}" file="${ejb3-persistence.jar}"/>
+    	<copy todir="${lib.dir}" file="${mailapi.jar}"/>
+    	<copy todir="${lib.dir}" file="${smtp.jar}"/>
+    	<copy todir="${lib.dir}" file="${imap.jar}"/>
+    	<copy todir="${lib.dir}" file="${dsn.jar}"/>
+    	<copy todir="${lib.dir}" file="${request-response-time-1.1.0.jar}"/>
+    	<copy todir="${lib.dir}" file="${apache-httpcomponents-httpclient.jar}" />
+    	 <copy todir="${lib.dir}" file="${commons-codec-1.9.jar}" />
+    	 <!-- <copy todir="${lib.dir}" file="${commons-httpclient-3.1.jar }" /> -->
+    	 <copy todir="${lib.dir}" file="${commons-logging-1.2.jar}" />
+    	 <copy todir="${lib.dir}" file="${http-core-4.1.jar}" />
+		
+    	<copy todir="${lib.dir}" file="${server.jar}"/>
+		<!-- By Mahesh For OPENAM -->
+		<copy todir="${lib.dir}" file="${commons-chain-1.2.jar}"/>
+		<copy todir="${lib.dir}" file="${commons-digester-2.1.jar}"/>
+		<copy todir="${lib.dir}" file="${commons-validator.jar}"/>
+		<copy todir="${lib.dir}" file="${dom4j-1.6.1.redhat-6.jar}"/>
+		<copy todir="${lib.dir}" file="${esapiport-2009-26-07.jar}"/>
+		<copy todir="${lib.dir}" file="${forgerock-util-1.1.0.jar}"/>
+		<copy todir="${lib.dir}" file="${mail-1.4.5.jar}"/>
+		<copy todir="${lib.dir}" file="${openam-dtd-schema-11.0.0.jar}"/>
+		<copy todir="${lib.dir}" file="${openam-federation-library-11.0.0.jar}"/>
+    	<copy todir="${lib.dir}" file="${openam-jaxrpc-schema-11.0.0.jar}"/>
+    	<copy todir="${lib.dir}" file="${openam-liberty-schema-11.0.0.jar}"/>
+		<copy todir="${lib.dir}" file="${openam-mib-schema-11.0.0.jar}"/>
+		<copy todir="${lib.dir}" file="${openam-rest-11.0.0.jar}"/>
+    	<copy todir="${lib.dir}" file="${openam-saml2-schema-11.0.0.jar}"/>
+    	<copy todir="${lib.dir}" file="${openam-shared-11.0.0.jar}"/>
+    	<copy todir="${lib.dir}" file="${openam-wsfederation-schema-11.0.0.jar}"/>
+    	<copy todir="${lib.dir}" file="${openam-xacml3-schema-11.0.0.jar}"/>
+    	<copy todir="${lib.dir}" file="${OpenFM-11.0.0.jar}"/>
+    	<copy todir="${lib.dir}" file="${org.apache.commons.fileupload.jar}"/>
+    	<copy todir="${lib.dir}" file="${relaxngDatatype-20020414.jar}"/>
+    	<copy todir="${lib.dir}" file="${webservices-api-2009-14-01.jar}"/>
+    	<copy todir="${lib.dir}" file="${webservices-extra-2008-03-12.jar}"/>
+    	<copy todir="${lib.dir}" file="${webservices-extra-api-2003-09-04.jar}"/>
+		<copy todir="${lib.dir}" file="${webservices-rt-2009-29-07.jar}"/>
+    	<copy todir="${lib.dir}" file="${xml-apis-2.11.0.jar}"/>    	
+		<copy todir="${lib.dir}" file="${poi-3.7-20101029.jar}"/>
+		<copy todir="${lib.dir}" file="${poi-ooxml-3.7-20101029.jar}"/>
+		<copy todir="${lib.dir}" file="${poi-ooxml-schemas-3.10-beta2-20130904.jar}"/>
+		<copy todir="${lib.dir}" file="${xml-serializer-2.11.0.jar}"/>
+		<copy todir="${lib.dir}" file="${commons-io-1.4.jar}"/>
+		
+		
+        <copy overwrite="true" file="${properties.dir}/commonPersistenceContext.xml" todir="${classes.dir}"/>
+    	<copy overwrite="true" file="${properties.dir}/commonConfigurationContext.xml" todir="${classes.dir}"/>
+    	<copy overwrite="true" file="${properties.dir}/ApplicationResources.properties" todir="${classes.dir}"/>
+    	<copy overwrite="true" file="${properties.dir}/commonEmailContext.xml" todir="${classes.dir}"/>
+    	<copy overwrite="true" file="${properties.dir}/Claims.properties" todir="${classes.dir}"/>
+    	<copy overwrite="true" file="${properties.dir}/SGVConstants.properties" todir="${classes.dir}"/>
+    	<copy overwrite="true" file="${properties.dir}/Registration.properties" todir="${classes.dir}"/>
+        <copy overwrite="true" file="${properties.dir}/FollowUp.properties" todir="${classes.dir}"/>
+		<copy overwrite="true" file="${aws_properties.dir}/hibernate.db.properties" todir="${classes.dir}"/>
+		<copy overwrite="true" file="${aws_properties.dir}/schedulers.xml" todir="${webinf.dir}"/>
+    	<!--<copydir src="${ExtjsDst.dir}" dest="${web.dir}/extjsnew"/> -->
+    		
+        <!-- Construct classpath using app-specific and common classes & jars-->
+        <!-- Note: Since we've copied over all the libraries. Just include   -->
+        <!-- the lib.dir jars in the classpath.  -->
+        <path id="build.classpath">
+            <fileset dir="${lib.dir}">
+        	    <include name="**/*.jar"/>
+			</fileset>
+        </path>
+    </target>
+
+    <!-- ==================== Compile Target ==================== -->
+    <target name="build" depends="prepare" description="compile java sources">
+        <!-- Compile Java classes as necessary -->
+        <javac srcdir="${src.dir}"
+               destdir="${classes.dir}"
+               includes="**/*.java"
+               debug="${compile.debug}"
+               deprecation="${compile.deprecation}"
+			   includeantruntime="false"
+               optimize="${compile.optimize}">
+            <classpath refid="build.classpath"/>
+        </javac>
+    </target>
+
+    <!-- ==================== War Target ==================== -->
+    
+	<target name="warIt" depends="build" description="creates war file">
+
+	 <!--Create WAR file -->
+			<echo message="IN WAR TARGET"/>
+	    	<war destfile="${package.dir}/Operations.war" webxml="${web.dir}/WEB-INF/web.xml">
+	    	    <!-- <classes dir="${classes.dir}"
+	    	                     defaultexcludes="yes"
+	    	                     excludes="*.cfg,**/tests/**,**/test/**"/>
+	    	     <webinf dir="${webinf.dir}" includes="*.xml"/>    	     
+	    		
+	    	     <lib dir="${lib.dir}" /> -->
+	    		 <fileset dir="${web.dir}"> 
+	    		<include name="**/*.*"/>
+	    		</fileset>
+	    	</war>
+	</target>
+</project>

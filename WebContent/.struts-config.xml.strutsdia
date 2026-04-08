@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="StrutsProcess">
+ <PROCESS-ITEM ID="ajaxResult" NAME="forward0"
+  PATH="/common/ajaxResult.jsp" SHAPE="32,17,0,0" TARGET="page29"
+  TITLE="ajaxResult" TYPE="forward" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="sessionExpire" NAME="forward1"
+  PATH="/login/sessionInvalid.jsp" SHAPE="32,129,0,0" TARGET="page1"
+  TITLE="sessionExpire" TYPE="forward" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="#casesApprovalAction" NAME="action0"
+  PATH="/casesApprovalAction" SHAPE="32,241,0,0" TITLE="casesSearchForm"
+  TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="PreauthCaseDisplayFrame" NAME="forward0"
+   PATH="/Preauth/preauthCaseDisplayFrame.jsp" TARGET="page2"
+   TITLE="PreauthCaseDisplayFrame" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="pasthistory" NAME="forward1"
+   PATH="/Preauth/pastHistory.jsp" TARGET="page3" TITLE="pasthistory"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="empPenCaseSearch" NAME="forward2"
+   PATH="/Preauth/EmpPenCaseSearch.jsp" TARGET="page30"
+   TITLE="empPenCaseSearch" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#preauthDetails" NAME="action1"
+  PATH="/preauthDetails" SHAPE="272,513,0,0" TITLE="preauthDetailsForm"
+  TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="preauthDtls" NAME="forward0"
+   PATH="/Preauth/PreauthDetails.jsp" TARGET="page4" TITLE="preauthDtls"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="pexQuestions" NAME="forward1"
+   PATH="/Preauth/PexQuestionnaire.jsp" TARGET="page5"
+   TITLE="pexQuestions" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="getPRFForm" NAME="forward2"
+   PATH="/Preauth/PRFProntForm.jsp" TARGET="page6" TITLE="getPRFForm"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="onlineCaseSheet" NAME="forward3"
+   PATH="/Preauth/OnlineCaseSheet.jsp" TARGET="page7"
+   TITLE="onlineCaseSheet" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="caseAttachments" NAME="forward4"
+   PATH="/Preauth/caseAttachments.jsp" TARGET="page8"
+   TITLE="caseAttachments" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="preauthDtlsEhf" NAME="forward5"
+   PATH="/Preauth/PreauthDetailsEHF.jsp" TARGET="page9"
+   TITLE="preauthDtlsEhf" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="preauthDtlsEhf1" NAME="forward6"
+   PATH="/Preauth/PreauthDetailsEHF1.jsp" TARGET="page10"
+   TITLE="preauthDtlsEhf1" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="ipCaseCopy" NAME="forward7"
+   PATH="/patient/ipCaseCopy.jsp" TARGET="page31" TITLE="ipCaseCopy"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="opCaseCopy" NAME="forward8"
+   PATH="/patient/opCaseCopy.jsp" TARGET="page32" TITLE="opCaseCopy"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="cochlearQuesttionaire" NAME="forward9"
+   PATH="/Preauth/cochlearQuestionnaire.jsp" TARGET="page33"
+   TITLE="cochlearQuesttionaire" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="viewTelephonicDetails" NAME="forward10"
+   PATH="/patient/viewTelephonicDtls.jsp" TARGET="page34"
+   TITLE="viewTelephonicDetails" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#followUpAction" NAME="action2"
+  PATH="/followUpAction" SHAPE="256,1265,0,0" TITLE="followUpForm"
+  TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="FolowUpClaimForm" NAME="forward0"
+   PATH="/FollowUp/followUpClaimForm.jsp" TARGET="page11"
+   TITLE="FolowUpClaimForm" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="followUpInit" NAME="forward1"
+   PATH="/FollowUp/followUpInit.jsp" TARGET="page12"
+   TITLE="followUpInit" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="folowUpsearch" NAME="forward2"
+   PATH="/FollowUp/followUpCaseSearchBootstrap.jsp" TARGET="page35"
+   TITLE="folowUpsearch" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="printDTRS" NAME="forward3"
+   PATH="/FollowUp/printDTRS.jsp" TARGET="page36" TITLE="printDTRS"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="printPrescription" NAME="forward4"
+   PATH="/FollowUp/printPrescription.jsp" TARGET="page37"
+   TITLE="printPrescription" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="viewFPDtlsPayPage" NAME="forward5"
+   PATH="/FollowUp/viewFPPayPage.jsp" TARGET="page38"
+   TITLE="viewFPDtlsPayPage" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="fpclaimsPayment" NAME="forward6"
+   PATH="/FollowUp/fpclaimsPayment.jsp" TARGET="page39"
+   TITLE="fpclaimsPayment" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="viewClinicalData" NAME="forward7"
+   PATH="/FollowUp/viewClinicalData.jsp" TARGET="page40"
+   TITLE="viewClinicalData" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#ClaimsFlow" NAME="action3" PATH="/ClaimsFlow"
+  SHAPE="32,1537,0,0" TITLE="claimsFlowForm" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="viewClaimPage" NAME="forward0"
+   PATH="/claimsFlow/viewClaimPage.jsp" TARGET="page14"
+   TITLE="viewClaimPage" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="PreAuthSuccessPage" NAME="forward1"
+   PATH="/actions/PreAuthSuccessPage.jsp" TARGET="page15"
+   TITLE="PreAuthSuccessPage" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="errClaimsPayment" NAME="forward2"
+   PATH="/claimsFlow/errClaimsPayment.jsp" TARGET="page41"
+   TITLE="errClaimsPayment" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="tdsClaimsPayment" NAME="forward3"
+   PATH="/claimsFlow/tdsClaimsPayment.jsp" TARGET="page42"
+   TITLE="tdsClaimsPayment" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="claimsPayment" NAME="forward4"
+   PATH="/claimsFlow/claimsPayment.jsp" TARGET="page43"
+   TITLE="claimsPayment" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="viewClaimDtlsPayment" NAME="forward5"
+   PATH="/claimsFlow/viewClaimDtlsPayment.jsp" TARGET="page44"
+   TITLE="viewClaimDtlsPayment" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#attachmentAction" NAME="action4"
+  PATH="/attachmentAction" SHAPE="32,1793,0,0" TITLE="attachmentForm"
+  TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="onload" NAME="forward0"
+   PATH="/attachments/Attachment.jsp" TARGET="page16" TITLE="onload"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="caseAttachments" NAME="forward1"
+   PATH="/attachments/casesAttachment.jsp" TARGET="page17"
+   TITLE="caseAttachments" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="claimPaymentAttachments" NAME="forward2"
+   PATH="/attachments/claimPayAttachment.jsp" TARGET="page45"
+   TITLE="claimPaymentAttachments" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#casesSearchAction" NAME="action5"
+  PATH="/casesSearchAction" SHAPE="32,2049,0,0"
+  TITLE="casesSearchFormClaims" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="PreauthCaseDisplayFrame" NAME="forward0"
+   PATH="/Preauth/preauthCaseDisplayFrame.jsp" TARGET="page2"
+   TITLE="PreauthCaseDisplayFrame" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="search" NAME="forward1"
+   PATH="/caseSearch/CasesViewSearchBootstrap.jsp" TARGET="page46"
+   TITLE="search" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="caseNotFound" NAME="forward2"
+   PATH="/caseSearch/caseNotFound.jsp" TARGET="page47"
+   TITLE="caseNotFound" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="deathCasesView" NAME="forward3"
+   PATH="/caseSearch/deathCasesViewBootstrap.jsp" TARGET="page48"
+   TITLE="deathCasesView" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#clinicalNotesAction" NAME="action6"
+  PATH="/clinicalNotesAction" SHAPE="32,2305,0,0"
+  TITLE="clinicalNotesForm" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="dischargeSummryForm" NAME="forward0"
+   PATH="/Preauth/PrintDischarge.jsp" TARGET="page20"
+   TITLE="dischargeSummryForm" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="preauthClinicalNotes" NAME="forward1"
+   PATH="/Preauth/preauthClinicalNotes.jsp" TARGET="page21"
+   TITLE="preauthClinicalNotes" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="patSatisfactionLetter" NAME="forward2"
+   PATH="/Preauth/PatientSatisfactionLetter.jsp" TARGET="page22"
+   TITLE="patSatisfactionLetter" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="json" NAME="forward3"
+   PATH="/Preauth/json.jsp" TARGET="page23" TITLE="json" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="surgeryUpdated" NAME="forward4"
+   PATH="/Preauth/surgeryResult.jsp" TARGET="page24"
+   TITLE="surgeryUpdated" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#loginAction" NAME="action7" PATH="/loginAction"
+  SHAPE="256,3009,0,0" TITLE="loginForm" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="ChangePasswordPage" NAME="forward0"
+   PATH="/login/ChangePassword.jsp" TARGET="page25"
+   TITLE="ChangePasswordPage" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="frame" NAME="forward1"
+   PATH="/login/HomePageTest.jsp" TARGET="page49" TITLE="frame"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="onload" NAME="forward2"
+   PATH="/login/login.jsp" TARGET="page27" TITLE="onload" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="login" NAME="forward3"
+   PATH="/login/login.jsp" TARGET="page27" TITLE="login" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="defaultPage" NAME="forward4"
+   PATH="/login/defaultPage.jsp" TARGET="page28" TITLE="defaultPage"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="UpdateProfilePage" NAME="forward5"
+   PATH="/login/updateProfile.jsp" TARGET="page50"
+   TITLE="UpdateProfilePage" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="sessionExpire" NAME="forward6"
+   PATH="/login/sessionInvalid.jsp" TARGET="page1" TITLE="sessionExpire"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="frameOpenAm" NAME="forward7"
+   PATH="/login/HomePageOpenAMBootstrap.jsp" TARGET="page51"
+   TITLE="frameOpenAm" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="noAuthorizationPage" NAME="forward8"
+   PATH="/login/noAuthorizationPage.jsp" TARGET="page52"
+   TITLE="noAuthorizationPage" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="digitalCertifiCateAuthenticate"
+   NAME="forward9"
+   PATH="/login/DigitalCertificate/digitalCertifiCateAuthenticate.jsp"
+   TARGET="page53" TITLE="digitalCertifiCateAuthenticate" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#ChangePwdReq" NAME="action8" PATH="/ChangePwdReq"
+  SHAPE="736,3009,0,0" TITLE="loginRequestForm" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="ChangePasswordPage" NAME="forward0"
+   PATH="/login/ChangePassword.jsp" TARGET="page25"
+   TITLE="ChangePasswordPage" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page0" PATH="/common/ajaxResponse.jsp"
+  SHAPE="240,34,0,0" SUBTYPE="jsp" TITLE="ajaxResponse.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page1" PATH="/login/sessionInvalid.jsp"
+  SHAPE="240,146,0,0" SUBTYPE="jsp" TITLE="sessionInvalid.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page2" PATH="/Preauth/preauthCaseDisplayFrame.jsp"
+  SHAPE="256,258,0,0" SUBTYPE="jsp" TITLE="preauthCaseDisplayFrame.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page3" PATH="/Preauth/pastHistory.jsp"
+  SHAPE="256,402,0,0" SUBTYPE="jsp" TITLE="pastHistory.jsp" TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/casesApprovalAction.do"
+   SUBTYPE="confirmed" TARGET="action0" TITLE="/casesApprovalAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page4" PATH="/Preauth/PreauthDetails.jsp"
+  SHAPE="544,498,0,0" SUBTYPE="jsp" TITLE="PreauthDetails.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page5" PATH="/Preauth/PexQuestionnaire.jsp"
+  SHAPE="32,498,0,0" SUBTYPE="jsp" TITLE="PexQuestionnaire.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/preauthDetails.do"
+   SUBTYPE="confirmed" TARGET="action1" TITLE="/preauthDetails.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page6" PATH="/Preauth/PRFProntForm.jsp"
+  SHAPE="544,802,0,0" SUBTYPE="jsp" TITLE="PRFProntForm.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page7" PATH="/Preauth/OnlineCaseSheet.jsp"
+  SHAPE="544,914,0,0" SUBTYPE="jsp" TITLE="OnlineCaseSheet.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page8" PATH="/Preauth/caseAttachments.jsp"
+  SHAPE="544,1026,0,0" SUBTYPE="jsp" TITLE="caseAttachments.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page9" PATH="/Preauth/PreauthDetailsEHF.jsp"
+  SHAPE="32,802,0,0" SUBTYPE="jsp" TITLE="PreauthDetailsEHF.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/preauthDetails.do"
+   SUBTYPE="confirmed" TARGET="action1" TITLE="/preauthDetails.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page10" PATH="/Preauth/PreauthDetailsEHF1.jsp"
+  SHAPE="544,1138,0,0" SUBTYPE="jsp" TITLE="PreauthDetailsEHF1.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/preauthDetails.do"
+   SUBTYPE="confirmed" TARGET="action1" TITLE="/preauthDetails.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page11" PATH="/FollowUp/followUpClaimForm.jsp"
+  SHAPE="496,1250,0,0" SUBTYPE="jsp" TITLE="followUpClaimForm.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page12" PATH="/FollowUp/followUpInit.jsp"
+  SHAPE="32,1250,0,0" SUBTYPE="jsp" TITLE="followUpInit.jsp" TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/followUpAction.do"
+   SUBTYPE="confirmed" TARGET="action2" TITLE="/followUpAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page13" PATH="/FollowUp/followUpCaseSearch.jsp"
+  SHAPE="496,1426,0,0" SUBTYPE="jsp" TITLE="followUpCaseSearch.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/followUpAction.do"
+   SUBTYPE="confirmed" TARGET="action2" TITLE="/followUpAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page14" PATH="/claimsFlow/viewClaimPage.jsp"
+  SHAPE="256,1554,0,0" SUBTYPE="jsp" TITLE="viewClaimPage.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page15" PATH="/actions/PreAuthSuccessPage.jsp"
+  SHAPE="256,1698,0,0" SUBTYPE="jsp" TITLE="PreAuthSuccessPage.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page16" PATH="/attachments/Attachment.jsp"
+  SHAPE="256,1810,0,0" SUBTYPE="jsp" TITLE="Attachment.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page17" PATH="/attachments/casesAttachment.jsp"
+  SHAPE="256,1954,0,0" SUBTYPE="jsp" TITLE="casesAttachment.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page19" PATH="/caseSearch/CasesViewSearch.jsp"
+  SHAPE="256,2210,0,0" SUBTYPE="jsp" TITLE="CasesViewSearch.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/casesSearchAction.do"
+   SUBTYPE="confirmed" TARGET="action5" TITLE="/casesSearchAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page20" PATH="/Preauth/PrintDischarge.jsp"
+  SHAPE="304,2322,0,0" SUBTYPE="jsp" TITLE="PrintDischarge.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page21" PATH="/Preauth/preauthClinicalNotes.jsp"
+  SHAPE="304,2562,0,0" SUBTYPE="jsp" TITLE="preauthClinicalNotes.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/clinicalNotesAction.do"
+   SUBTYPE="confirmed" TARGET="action6" TITLE="/clinicalNotesAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page22"
+  PATH="/Preauth/PatientSatisfactionLetter.jsp" SHAPE="304,2674,0,0"
+  SUBTYPE="jsp" TITLE="PatientSatisfactionLetter.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page23" PATH="/Preauth/json.jsp"
+  SHAPE="304,2786,0,0" SUBTYPE="jsp" TITLE="json.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page24" PATH="/Preauth/surgeryResult.jsp"
+  SHAPE="304,2898,0,0" SUBTYPE="jsp" TITLE="surgeryResult.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page25" PATH="/login/ChangePassword.jsp"
+  SHAPE="528,2994,0,0" SUBTYPE="jsp" TITLE="ChangePassword.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/ChangePwdReq.do"
+   SUBTYPE="confirmed" TARGET="action8" TITLE="/ChangePwdReq.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page26" PATH="/login/HomePage.jsp"
+  SHAPE="32,2994,0,0" SUBTYPE="jsp" TITLE="HomePage.jsp" TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/loginAction.do"
+   SUBTYPE="confirmed" TARGET="action7" TITLE="/loginAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page27" PATH="/login/login.jsp"
+  SHAPE="528,3234,0,0" SUBTYPE="jsp" TITLE="login.jsp" TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/loginAction.do"
+   SUBTYPE="confirmed" TARGET="action7" TITLE="/loginAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page28" PATH="/login/defaultPage.jsp"
+  SHAPE="528,3346,0,0" SUBTYPE="jsp" TITLE="defaultPage.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="index" NAME="forward2" PATH="/login/login.jsp"
+  SHAPE="288,5153,0,0" TARGET="page27" TITLE="index" TYPE="forward" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="openExcelFile" NAME="forward3"
+  PATH="/common/openExcelFile.jsp" SHAPE="32,577,0,0" TARGET="page54"
+  TITLE="openExcelFile" TYPE="forward" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="openFile" NAME="forward4" PATH="/common/openFile.jsp"
+  SHAPE="32,1521,0,0" TARGET="page55" TITLE="openFile" TYPE="forward" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="json" NAME="forward5" PATH="/common/json.jsp"
+  SHAPE="32,1633,0,0" TARGET="page56" TITLE="json" TYPE="forward" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="panelDoctor" NAME="forward6"
+  PATH="/finance/panelDoctor.jsp" SHAPE="32,1745,0,0" TARGET="page57"
+  TITLE="panelDoctor" TYPE="forward" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="java.lang.Exception" NAME="exception0"
+  PATH="/patient/Error.jsp" SHAPE="32,17,0,0" TARGET="page58"
+  TITLE="Exception" TYPE="exception" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="#flaggingAction" NAME="action9"
+  PATH="/flaggingAction" SHAPE="32,1857,0,0" TITLE="flaggingForm"
+  TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="flaggingAttach" NAME="forward0"
+   PATH="/Flagging/FlaggingAttach.jsp" TARGET="page59"
+   TITLE="flaggingAttach" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="flagging" NAME="forward1"
+   PATH="/Flagging/Flagging.jsp" TARGET="page60" TITLE="flagging"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="viewFlaggedCases" NAME="forward2"
+   PATH="/Flagging/viewFlaggedCases.jsp" TARGET="page61"
+   TITLE="viewFlaggedCases" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#updateProfile" NAME="action10" PATH="/updateProfile"
+  SHAPE="560,4513,0,0" TITLE="loginRequestForm" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="UpdateProfilePage" NAME="forward0"
+   PATH="/login/updateProfile.jsp" TARGET="page50"
+   TITLE="UpdateProfilePage" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#digitalCertificate" NAME="action11"
+  PATH="/digitalCertificate" SHAPE="32,2593,0,0" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="signUpUser" NAME="forward0"
+   PATH="/digitalCertificate/signClient.jsp" TARGET="page62"
+   TITLE="signUpUser" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#patientDetails" NAME="action12"
+  PATH="/patientDetails" SHAPE="32,17,0,0" TITLE="patientForm"
+  TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="dtrsForm" NAME="forward0"
+   PATH="/patient/DTRSForm.jsp" TARGET="page63" TITLE="dtrsForm"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="ajaxResult" NAME="forward1"
+   PATH="/common/ajaxResponse.jsp" TARGET="page0" TITLE="ajaxResult"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="error" NAME="forward2"
+   PATH="/patient/Error.jsp" TARGET="page58" TITLE="error"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="ipCaseCopy" NAME="forward3"
+   PATH="/patient/ipCaseCopyReg.jsp" TARGET="page64" TITLE="ipCaseCopy"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="viewRegisteredPatients" NAME="forward4"
+   PATH="/patient/ViewRegisteredPatients.jsp" TARGET="page65"
+   TITLE="viewRegisteredPatients" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="printDetails" NAME="forward5"
+   PATH="/patient/PrintDetails.jsp" TARGET="page66" TITLE="printDetails"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="telephonicPatientEntry" NAME="forward6"
+   PATH="/patient/TelephonicPatientEntry.jsp" TARGET="page67"
+   TITLE="telephonicPatientEntry" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="patient" NAME="forward7"
+   PATH="/patient/patient.jsp" TARGET="page68" TITLE="patient"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="opCaseCopy" NAME="forward8"
+   PATH="/patient/opCaseCopyReg.jsp" TARGET="page69" TITLE="opCaseCopy"
+   TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="opRegPatientsView" NAME="forward9"
+   PATH="/patient/OpRegPatientsView.jsp" TARGET="page70"
+   TITLE="opRegPatientsView" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="patientDetails" NAME="forward10"
+   PATH="/patient/PatientDetails.jsp" TARGET="page71"
+   TITLE="patientDetails" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="telephonicSucess" NAME="forward11"
+   PATH="/patient/telephonicSucess.jsp" TARGET="page72"
+   TITLE="telephonicSucess" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="viewTelephonicDetails" NAME="forward12"
+   PATH="/patient/viewTelephonicDtlsReg.jsp" TARGET="page73"
+   TITLE="viewTelephonicDetails" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="caseGeneratedSlip" NAME="forward13"
+   PATH="/patient/CaseGeneratedSlip.jsp" TARGET="page74"
+   TITLE="caseGeneratedSlip" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="InPatientRegistration" NAME="forward14"
+   PATH="/patient/InPatientRegistration.jsp" TARGET="page75"
+   TITLE="InPatientRegistration" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#trainingMaterialsAction" NAME="action13"
+  PATH="/trainingMaterialsAction" SHAPE="1072,4641,0,0" TYPE="action" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="#telephonicAction" NAME="action14"
+  PATH="/telephonicAction" SHAPE="256,2993,0,0" TITLE="telephonicForm"
+  TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="telephonicSearch" NAME="forward0"
+   PATH="/patient/TelephonicIntimation.jsp" TARGET="page76"
+   TITLE="telephonicSearch" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="telephonicIntimationReg" NAME="forward1"
+   PATH="/patient/TeleIntimationReg.jsp" TARGET="page77"
+   TITLE="telephonicIntimationReg" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#medicalAudit" NAME="action15" PATH="/medicalAudit"
+  SHAPE="256,3425,0,0" TITLE="medicalAuditForm" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="questionnaire" NAME="forward0"
+   PATH="/medicalAudit/questionnaire.jsp" TARGET="page78"
+   TITLE="questionnaire" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="maWorklist" NAME="forward1"
+   PATH="/medicalAudit/medicalAuditWorklist.jsp" TARGET="page79"
+   TITLE="maWorklist" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="auditSearch" NAME="forward2"
+   PATH="/medicalAudit/medicalAuditSearch.jsp" TARGET="page80"
+   TITLE="auditSearch" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#panelDocPay" NAME="action16" PATH="/panelDocPay"
+  SHAPE="288,4097,0,0" TITLE="panelDocPayForm" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="panelDocCases" NAME="forward0"
+   PATH="/panelDoctor/panelDoctorCaseList.jsp" TARGET="page81"
+   TITLE="panelDocCases" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="panelDocTDSPmnt" NAME="forward1"
+   PATH="/panelDoctor/panelDocTDSPmnt.jsp" TARGET="page82"
+   TITLE="panelDocTDSPmnt" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="panelDocPmntCEO" NAME="forward2"
+   PATH="/panelDoctor/panelDocPmntCEO.jsp" TARGET="page83"
+   TITLE="panelDocPmntCEO" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="panelDocPay" NAME="forward3"
+   PATH="/panelDoctor/panelDoctorPay.jsp" TARGET="page84"
+   TITLE="panelDocPay" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page29" PATH="/common/ajaxResult.jsp"
+  SHAPE="448,17,0,0" SUBTYPE="jsp" TITLE="ajaxResult.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page30" PATH="/Preauth/EmpPenCaseSearch.jsp"
+  SHAPE="448,241,0,0" SUBTYPE="jsp" TITLE="EmpPenCaseSearch.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/casesApprovalAction.do"
+   SUBTYPE="confirmed" TARGET="action0" TITLE="/casesApprovalAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page31" PATH="/patient/ipCaseCopy.jsp"
+  SHAPE="480,625,0,0" SUBTYPE="jsp" TITLE="ipCaseCopy.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page32" PATH="/patient/opCaseCopy.jsp"
+  SHAPE="688,513,0,0" SUBTYPE="jsp" TITLE="opCaseCopy.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page33" PATH="/Preauth/cochlearQuestionnaire.jsp"
+  SHAPE="480,737,0,0" SUBTYPE="jsp" TITLE="cochlearQuestionnaire.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/preauthDetails.do"
+   SUBTYPE="confirmed" TARGET="action1" TITLE="/preauthDetails.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page34" PATH="/patient/viewTelephonicDtls.jsp"
+  SHAPE="688,625,0,0" SUBTYPE="jsp" TITLE="viewTelephonicDtls.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page35"
+  PATH="/FollowUp/followUpCaseSearchBootstrap.jsp" SHAPE="672,1265,0,0"
+  SUBTYPE="jsp" TITLE="followUpCaseSearchBootstrap.jsp" TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/followUpAction.do"
+   SUBTYPE="confirmed" TARGET="action2" TITLE="/followUpAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page36" PATH="/FollowUp/printDTRS.jsp"
+  SHAPE="464,1489,0,0" SUBTYPE="jsp" TITLE="printDTRS.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page37" PATH="/FollowUp/printPrescription.jsp"
+  SHAPE="672,1377,0,0" SUBTYPE="jsp" TITLE="printPrescription.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/followUpAction.do"
+   SUBTYPE="confirmed" TARGET="action2" TITLE="/followUpAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page38" PATH="/FollowUp/viewFPPayPage.jsp"
+  SHAPE="880,1265,0,0" SUBTYPE="jsp" TITLE="viewFPPayPage.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page39" PATH="/FollowUp/fpclaimsPayment.jsp"
+  SHAPE="464,1601,0,0" SUBTYPE="jsp" TITLE="fpclaimsPayment.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/followUpAction.do"
+   SUBTYPE="confirmed" TARGET="action2" TITLE="/followUpAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page40" PATH="/FollowUp/viewClinicalData.jsp"
+  SHAPE="672,1489,0,0" SUBTYPE="jsp" TITLE="viewClinicalData.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page41" PATH="/claimsFlow/errClaimsPayment.jsp"
+  SHAPE="240,1873,0,0" SUBTYPE="jsp" TITLE="errClaimsPayment.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/ClaimsFlow.do"
+   SUBTYPE="confirmed" TARGET="action3" TITLE="/ClaimsFlow.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page42" PATH="/claimsFlow/tdsClaimsPayment.jsp"
+  SHAPE="448,1761,0,0" SUBTYPE="jsp" TITLE="tdsClaimsPayment.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/ClaimsFlow.do"
+   SUBTYPE="confirmed" TARGET="action3" TITLE="/ClaimsFlow.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page43" PATH="/claimsFlow/claimsPayment.jsp"
+  SHAPE="656,1649,0,0" SUBTYPE="jsp" TITLE="claimsPayment.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/ClaimsFlow.do"
+   SUBTYPE="confirmed" TARGET="action3" TITLE="/ClaimsFlow.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page44" PATH="/claimsFlow/viewClaimDtlsPayment.jsp"
+  SHAPE="864,1537,0,0" SUBTYPE="jsp" TITLE="viewClaimDtlsPayment.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page45" PATH="/attachments/claimPayAttachment.jsp"
+  SHAPE="448,1905,0,0" SUBTYPE="jsp" TITLE="claimPayAttachment.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/attachmentAction.do"
+   SUBTYPE="confirmed" TARGET="action4" TITLE="/attachmentAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page46"
+  PATH="/caseSearch/CasesViewSearchBootstrap.jsp" SHAPE="448,2161,0,0"
+  SUBTYPE="jsp" TITLE="CasesViewSearchBootstrap.jsp" TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/casesSearchAction.do"
+   SUBTYPE="confirmed" TARGET="action5" TITLE="/casesSearchAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page47" PATH="/caseSearch/caseNotFound.jsp"
+  SHAPE="656,2049,0,0" SUBTYPE="jsp" TITLE="caseNotFound.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page48"
+  PATH="/caseSearch/deathCasesViewBootstrap.jsp" SHAPE="240,2385,0,0"
+  SUBTYPE="jsp" TITLE="deathCasesViewBootstrap.jsp" TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/casesSearchAction.do"
+   SUBTYPE="confirmed" TARGET="action5" TITLE="/casesSearchAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page49" PATH="/login/HomePageTest.jsp"
+  SHAPE="464,3121,0,0" SUBTYPE="jsp" TITLE="HomePageTest.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/loginAction.do"
+   SUBTYPE="confirmed" TARGET="action7" TITLE="/loginAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page50" PATH="/login/updateProfile.jsp"
+  SHAPE="672,3121,0,0" SUBTYPE="jsp" TITLE="updateProfile.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/updateProfile.do"
+   SUBTYPE="confirmed" TARGET="action10" TITLE="/updateProfile.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page51" PATH="/login/HomePageOpenAMBootstrap.jsp"
+  SHAPE="880,3009,0,0" SUBTYPE="jsp" TITLE="HomePageOpenAMBootstrap.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/loginAction.do"
+   SUBTYPE="confirmed" TARGET="action7" TITLE="/loginAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page52" PATH="/login/noAuthorizationPage.jsp"
+  SHAPE="672,3233,0,0" SUBTYPE="jsp" TITLE="noAuthorizationPage.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page53"
+  PATH="/login/DigitalCertificate/digitalCertifiCateAuthenticate.jsp"
+  SHAPE="880,3121,0,0" SUBTYPE="jsp"
+  TITLE="digitalCertifiCateAuthenticate.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page54" PATH="/common/openExcelFile.jsp"
+  SHAPE="240,1426,0,0" SUBTYPE="jsp" TITLE="openExcelFile.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page55" PATH="/common/openFile.jsp"
+  SHAPE="240,1538,0,0" SUBTYPE="jsp" TITLE="openFile.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page56" PATH="/common/json.jsp"
+  SHAPE="240,1650,0,0" SUBTYPE="jsp" TITLE="json.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page57" PATH="/finance/panelDoctor.jsp"
+  SHAPE="240,1762,0,0" SUBTYPE="jsp" TITLE="panelDoctor.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page58" PATH="/patient/Error.jsp"
+  SHAPE="304,34,0,0" SUBTYPE="jsp" TITLE="Error.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page59" PATH="/Flagging/FlaggingAttach.jsp"
+  SHAPE="272,1874,0,0" SUBTYPE="jsp" TITLE="FlaggingAttach.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page60" PATH="/Flagging/Flagging.jsp"
+  SHAPE="272,2050,0,0" SUBTYPE="jsp" TITLE="Flagging.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page61" PATH="/Flagging/viewFlaggedCases.jsp"
+  SHAPE="272,2498,0,0" SUBTYPE="jsp" TITLE="viewFlaggedCases.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page62" PATH="/digitalCertificate/signClient.jsp"
+  SHAPE="240,2882,0,0" SUBTYPE="jsp" TITLE="signClient.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page63" PATH="/patient/DTRSForm.jsp"
+  SHAPE="304,34,0,0" SUBTYPE="jsp" TITLE="DTRSForm.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page64" PATH="/patient/ipCaseCopyReg.jsp"
+  SHAPE="304,34,0,0" SUBTYPE="jsp" TITLE="ipCaseCopyReg.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page65" PATH="/patient/ViewRegisteredPatients.jsp"
+  SHAPE="304,34,0,0" SUBTYPE="jsp" TITLE="ViewRegisteredPatients.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page66" PATH="/patient/PrintDetails.jsp"
+  SHAPE="304,34,0,0" SUBTYPE="jsp" TITLE="PrintDetails.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page67" PATH="/patient/TelephonicPatientEntry.jsp"
+  SHAPE="304,34,0,0" SUBTYPE="jsp" TITLE="TelephonicPatientEntry.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page68" PATH="/patient/patient.jsp"
+  SHAPE="304,34,0,0" SUBTYPE="jsp" TITLE="patient.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page69" PATH="/patient/opCaseCopyReg.jsp"
+  SHAPE="304,34,0,0" SUBTYPE="jsp" TITLE="opCaseCopyReg.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page70" PATH="/patient/OpRegPatientsView.jsp"
+  SHAPE="304,34,0,0" SUBTYPE="jsp" TITLE="OpRegPatientsView.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page71" PATH="/patient/PatientDetails.jsp"
+  SHAPE="304,34,0,0" SUBTYPE="jsp" TITLE="PatientDetails.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page72" PATH="/patient/telephonicSucess.jsp"
+  SHAPE="304,34,0,0" SUBTYPE="jsp" TITLE="telephonicSucess.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page73" PATH="/patient/viewTelephonicDtlsReg.jsp"
+  SHAPE="304,34,0,0" SUBTYPE="jsp" TITLE="viewTelephonicDtlsReg.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page74" PATH="/patient/CaseGeneratedSlip.jsp"
+  SHAPE="304,34,0,0" SUBTYPE="jsp" TITLE="CaseGeneratedSlip.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page75" PATH="/patient/InPatientRegistration.jsp"
+  SHAPE="304,34,0,0" SUBTYPE="jsp" TITLE="InPatientRegistration.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page76" PATH="/patient/TelephonicIntimation.jsp"
+  SHAPE="32,2978,0,0" SUBTYPE="jsp" TITLE="TelephonicIntimation.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/telephonicAction.do"
+   SUBTYPE="confirmed" TARGET="action14" TITLE="/telephonicAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page77" PATH="/patient/TeleIntimationReg.jsp"
+  SHAPE="32,3298,0,0" SUBTYPE="jsp" TITLE="TeleIntimationReg.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/telephonicAction.do"
+   SUBTYPE="confirmed" TARGET="action14" TITLE="/telephonicAction.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page78" PATH="/medicalAudit/questionnaire.jsp"
+  SHAPE="496,3410,0,0" SUBTYPE="jsp" TITLE="questionnaire.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page79"
+  PATH="/medicalAudit/medicalAuditWorklist.jsp" SHAPE="32,3618,0,0"
+  SUBTYPE="jsp" TITLE="medicalAuditWorklist.jsp" TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/medicalAudit.do"
+   SUBTYPE="confirmed" TARGET="action15" TITLE="/medicalAudit.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page80" PATH="/medicalAudit/medicalAuditSearch.jsp"
+  SHAPE="32,3970,0,0" SUBTYPE="jsp" TITLE="medicalAuditSearch.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/medicalAudit.do"
+   SUBTYPE="confirmed" TARGET="action15" TITLE="/medicalAudit.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page81" PATH="/panelDoctor/panelDoctorCaseList.jsp"
+  SHAPE="32,4082,0,0" SUBTYPE="jsp" TITLE="panelDoctorCaseList.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/panelDocPay.do"
+   SUBTYPE="confirmed" TARGET="action16" TITLE="/panelDocPay.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page82" PATH="/panelDoctor/panelDocTDSPmnt.jsp"
+  SHAPE="32,4290,0,0" SUBTYPE="jsp" TITLE="panelDocTDSPmnt.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/panelDocPay.do"
+   SUBTYPE="confirmed" TARGET="action16" TITLE="/panelDocPay.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page83" PATH="/panelDoctor/panelDocPmntCEO.jsp"
+  SHAPE="32,4402,0,0" SUBTYPE="jsp" TITLE="panelDocPmntCEO.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/panelDocPay.do"
+   SUBTYPE="confirmed" TARGET="action16" TITLE="/panelDocPay.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page84" PATH="/panelDoctor/panelDoctorPay.jsp"
+  SHAPE="32,4514,0,0" SUBTYPE="jsp" TITLE="panelDoctorPay.jsp"
+  TYPE="page" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT NAME="link0" PATH="/panelDocPay.do"
+   SUBTYPE="confirmed" TARGET="action16" TITLE="/panelDocPay.do"
+   TYPE="link" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#AnnualCheckUp" NAME="action17" PATH="/AnnualCheckUp"
+  SHAPE="32,6593,0,0" TITLE="annualForm" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="annualPatientsView" NAME="forward0"
+   PATH="/AnnualCheckUp/AnnualPatientsView.jsp" TARGET="page85"
+   TITLE="annualPatientsView" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page85"
+  PATH="/AnnualCheckUp/AnnualPatientsView.jsp" SHAPE="240,6593,0,0"
+  SUBTYPE="jsp" TITLE="AnnualPatientsView.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+</PROCESS>

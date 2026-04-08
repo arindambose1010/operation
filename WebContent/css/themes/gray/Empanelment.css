@@ -1,0 +1,144 @@
+
+	
+	div#menuForTemp {
+	height: 40px;
+	_background: url(menubg.png) repeat-x;
+	background: url(menubg.png) repeat-x;
+	width:98%;
+	margin:0 auto;
+	border-radius:10px;
+	}
+	#navBar{ 
+	list-style: none; 
+	position: relative; 
+	width:100%;
+	height:40px;
+	}
+	#navBar li { 
+	display: inline-block; 
+	position: relative;
+	margin: 0;
+	padding: 0;
+	display: block;
+	float: left;
+	z-index: 400;
+	}
+	#navBar a {
+	position: relative;
+	height: 40px;
+	display: block;
+	float: left;
+	padding:0px 10px;
+	line-height: 40px;
+	text-decoration: none;
+	width: auto;
+	z-index: 400;
+	color: #000;
+	font-weight:bold;
+	font-size: 10px; 
+	text-decoration: none;
+	text-transform: uppercase;
+	background-color:transparent;
+		border-radius:10px;
+	}
+	div#menuForTemp a:hover{
+	background-image: url(menuhover.png); 
+	-background: url(menuhover.png);
+	color:#fff;
+	}
+		
+	.activeMenu{
+	background-image: url(menuhover.png); 
+	-background: url(menuhover.png);
+	}
+
+	.activeMenuSpec{
+	background-image: url(buthover.png); 
+	-background: url(buthover.png);
+	}
+	
+		/*CSS Specialities*/	
+		
+	div#specForTemp {
+	width:98%;
+	margin:0 auto;
+	}
+	#specNavBar{ 
+	margin: 0 auto; 
+	list-style: none; 
+	position: relative; 
+	}
+	#specNavBar li { 
+	display: inline-block; 
+	background-image: url(butnormal.png); 
+	-background: url(butnormal.png); 
+	width:37px;
+	}
+
+	div#specForTemp ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	float: left;
+	}
+
+	div#specForTemp li {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	display: block;
+	float: left;
+	width: auto;
+	z-index: 400;
+	}
+
+
+
+
+	div#specForTemp a {
+	position: relative;
+	height: 34px;
+	display: block;
+	float: left;
+	line-height: 34px;
+	text-decoration: none;
+	width: auto;
+	color: #000000;
+	font-weight:bold;
+	font-size: 9px; 
+	text-decoration: none;
+	text-transform: uppercase;
+	background-color:transparent;
+	width:37px;
+	text-align: center;
+	}
+	div#specForTemp a:hover{
+	background-image: url(buthover.png); 
+	-background: url(buthover.png); 
+	color:#fff;
+	}
+
+	
+	
+	#CoverWholePageCss{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 125%;
+	z-index: 400;
+	display: none;
+	background-color: #000000;
+	opacity: .7;
+	filter:progid:DXImageTransform.Microsoft.BasicImage(opacity=.7);
+	}
+	#CoverWholePageCss img{
+	margin-top:35%;
+	margin-left:45%;
+	}
+
+	
+
+
+
+

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+		   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd 
+    	   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+		   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+	
+	<!-- Email configurations -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+         <!-- <property name="host" value="121.243.123.130"/> -->
+         <property name="host" value="mta1.aarogyasri.gov.in"/>
+    </bean>
+    
+    <bean id="templateProcessor" class="com.tcs.framework.emailConfiguration.TemplateProcessorImpl">
+        <property name="velocityEngine" ref="velocityEngine"/>
+    </bean>
+    <bean id="templateProcessor_fa" class="com.tcs.framework.emailConfiguration.TemplateProcessorFileImpl">
+        <property name="velocityEngine_fa" ref="velocityEngine_fa"/>
+    </bean>
+    
+	<bean id="emailNotifier" class="com.tcs.framework.emailConfiguration.EmailNotifier">
+        <property name="mailSender" ref="mailSender"/>
+        <property name="templateProcessor" ref="templateProcessor"/>
+        <property name="templateProcessor_fa" ref="templateProcessor_fa"/>
+    </bean>
+    
+    <!-- Configure Velocity for sending e-mail -->
+    <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="velocityProperties">
+            <props>
+                <prop key="resource.loader">class</prop>
+                <prop key="class.resource.loader.class">
+                    org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+                </prop>
+                <prop key="velocimacro.library"></prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="velocityEngine_fa" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="velocityProperties">
+            <props>
+                <prop key="resource.loader">file</prop>
+                <prop key="class.resource.loader.class">
+                    org.apache.velocity.run time.resource.loader.FileResourceLoader
+                </prop>
+                <prop key="file.resource.loader.path">/storageNAS-TS-Production/export/file_area/OperationsTS/Templates</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="mailMessage" class="org.springframework.mail.SimpleMailMessage" scope="prototype">
+    </bean>
+    <bean id="emailService" class="com.tcs.framework.emailConfiguration.EmailUtil">
+         <property name="mailMessage" ref="mailMessage"/>
+         <property name="emailNotifier" ref="emailNotifier"/>
+    </bean>
+    
+</beans>

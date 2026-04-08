@@ -1,0 +1,51 @@
+*{padding:0px; margin:0px;}
+body{font-family:Arial, Helvetica, sans-serif;font-size:0.8em;background-color:#F3F9FC; color:#333;}
+table{margin:0;padding:0;border:1px solid #ACCFEA;background:#fff;}
+.tbheader{background:#96CDCD;color:black;margin:3px;padding:3px;}
+.tbheaderBlue{background:#458DDE;color:#fff;margin:3px;padding:3px;}
+.tbheaderLightSeaGreen{background:#ECF7FA;color:black;margin:3px;padding:3px;}
+.tbheaderLightBrown{background:#F8E6E0;color:black;margin:3px;padding:3px;}
+.tbcell{border:1px solid #D4D4D4;margin:3px;padding:3px;font-size:0.9em;font-family:Arial, Helvetica, sans-serif;}
+.mandatory{color:#FF0404;}
+input[type='text']{border:1px solid #ADCBEF;padding:2px;}
+input[type='radio']{position:relative;top:3px;}
+input[type='button']{background-color:#027397;color:#fff;
+ 					border-top:1px solid #027397;
+					border-left:1px solid #027397;
+					border-right:1px solid #027397;
+					border-bottom:1px solid #027397;padding:2px;margin:5px;}
+input[type='reset']{background-color:#027397;color:#fff;
+ 					border-top:1px solid #027397;
+					border-left:1px solid #027397;
+					border-right:1px solid #027397;
+					border-bottom:1px solid #027397;padding:2px;margin:5px;}
+textarea{font-family:Arial, Helvetica, sans-serif;border:1px solid #ADCBEF;font-size:1em;}
+select{border:1px solid #ADCBEF;font-family:Arial, Helvetica, sans-serif;}
+option{padding:2px;}
+.border{border:1px solid #D4D4D4;margin:0px;padding:0px;font-size:0.9em;font-family:Arial;}
+.border1{background-color:#F3F9FC;}
+.border0{background-color:#ffffff;}
+.bordergrey{background-color:#DFE2E0;}
+.bordergreen{background-color:#c3dba4;}
+.borderReddishPink{background-color:#fa91a6;}
+
+
+ /* blue color white font*/ 
+.Button {  
+height:20px; 
+color:#ffffff; /* Text Color */
+border: 1px solid #3C6DA6; 
+text-align:center; 
+font-weight:bold; 
+color:#ffffff;
+font-family:Verdana;
+font-size:9pt;
+border: 1px solid #3C6DA6; 
+background: #7db9e8; /* old browsers */  
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1E5799',GradientType=0 ); /*for ie */
+}
+
+
+.Button:hover{   
+background: #1E5799; /* old browsers */   
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1E5799', endColorstr='#7db9e8',GradientType=0 ); /* ie */  } 

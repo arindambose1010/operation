@@ -1,0 +1,1 @@
+${AjaxMessage}*${AjaxMessage1}

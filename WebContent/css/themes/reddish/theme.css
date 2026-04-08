@@ -1,0 +1,16 @@
+.wrap1 {
+	BACKGROUND: url(/Registration/css/themes/reddish/header.jpg) no-repeat; POSITION: relative;
+}
+
+
+.timeStyle{
+	font-weight:500;
+	color: white;	
+}
+#headerdivnew{
+	background-image:url("/Registration/css/themes/reddish/header.jpg");
+	height:150px;
+	margin:0 auto;
+	background-repeat:no-repeat;
+	
+}

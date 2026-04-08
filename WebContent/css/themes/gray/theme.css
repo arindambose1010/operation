@@ -1,0 +1,20 @@
+.wrap1 {
+	BACKGROUND: url(/Registration/css/themes/gray/header.jpg) no-repeat; POSITION: relative;
+}
+A:link {
+	cursor: pointer;
+	
+}
+.timeStyle{
+	font-weight:500;
+	color: #54ABF3;
+	
+}
+
+#headerdivnew{
+	background-image:url("/Registration/css/themes/gray/header.jpg");
+	height:150px;
+	margin:0 auto;
+	background-repeat:no-repeat;
+	
+}

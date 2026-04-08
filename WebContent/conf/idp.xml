@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EntityDescriptor entityID="http://auth.ehf.telangana.gov.in:80/Signin" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+    <IDPSSODescriptor WantAuthnRequestsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <ArtifactResolutionService index="0" isDefault="true" Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://auth.ehf.telangana.gov.in:80/Signin/ArtifactResolver/metaAlias/idp"/>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://auth.ehf.telangana.gov.in:80/Signin/IDPSloRedirect/metaAlias/idp" ResponseLocation="http://auth.ehf.telangana.gov.in:80/Signin/IDPSloRedirect/metaAlias/idp"/>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://auth.ehf.telangana.gov.in:80/Signin/IDPSloPOST/metaAlias/idp" ResponseLocation="http://auth.ehf.telangana.gov.in:80/Signin/IDPSloPOST/metaAlias/idp"/>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://auth.ehf.telangana.gov.in:80/Signin/IDPSloSoap/metaAlias/idp"/>
+        <ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://auth.ehf.telangana.gov.in:80/Signin/IDPMniRedirect/metaAlias/idp" ResponseLocation="http://auth.ehf.telangana.gov.in:80/Signin/IDPMniRedirect/metaAlias/idp"/>
+        <ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://auth.ehf.telangana.gov.in:80/Signin/IDPMniPOST/metaAlias/idp" ResponseLocation="http://auth.ehf.telangana.gov.in:80/Signin/IDPMniPOST/metaAlias/idp"/>
+        <ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://auth.ehf.telangana.gov.in:80/Signin/IDPMniSoap/metaAlias/idp"/>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:WindowsDomainQualifiedName</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:kerberos</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName</NameIDFormat>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://auth.ehf.telangana.gov.in:80/Signin/SSORedirect/metaAlias/idp"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://auth.ehf.telangana.gov.in:80/Signin/SSOPOST/metaAlias/idp"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://auth.ehf.telangana.gov.in:80/Signin/SSOSoap/metaAlias/idp"/>
+        <NameIDMappingService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://auth.ehf.telangana.gov.in:80/Signin/NIMSoap/metaAlias/idp"/>
+        <AssertionIDRequestService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://auth.ehf.telangana.gov.in:80/Signin/AIDReqSoap/IDPRole/metaAlias/idp"/>
+        <AssertionIDRequestService Binding="urn:oasis:names:tc:SAML:2.0:bindings:URI" Location="http://auth.ehf.telangana.gov.in:80/Signin/AIDReqUri/IDPRole/metaAlias/idp"/>
+    </IDPSSODescriptor>
+</EntityDescriptor>

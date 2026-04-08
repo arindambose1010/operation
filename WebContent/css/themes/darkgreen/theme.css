@@ -1,0 +1,51 @@
+.wrap1 {
+	BACKGROUND: url(/Registration/css/themes/darkgreen/header.jpg) no-repeat; POSITION: relative;
+}
+A:link {
+	cursor: pointer;
+	
+}
+.timeStyle{
+	font-weight:500;
+	color: white;
+	
+}
+body {
+    color: #5a5a5a;
+    font-family: Tahoma,Geneva,sans-serif;
+   /* font-size: 0.75em;*/
+}
+/*Bootstrap Theme*/
+.tbheader {background: #2EA168;color:#fff;font-size:1em;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:bold;text-align:center}
+.page-header {background: #35A66E;color:#fff;}
+.heading{background: #8DB698;}
+#faqHead{background:#F8B956;}
+#trainingHead{background:#8DB698;}
+aside#sideLinks div {background: #8DB698;}
+.modal-header{background:#2EA168;color:#fff;}
+.custom-nav li a:hover{background:#8DB698;}
+.modal-header{background:#8DB698;color:#fff;}
+.custom-nav li a:hover{background:#8DB698;}
+.labelheading1{color:#008544;}
+.tbcellCss{margin:2px; padding:3px;background:#f7fefb;border:1px solid #c5f7de;}
+.tbcellBorder{margin:2px; padding:3px;border:1px solid #c5f7de;}
+.but { background-color: #0c884b;}
+.legendStyle{color:#000;font-size:1.1em}
+input[type="text"] {font-weight:normal;color:#000}
+#vtab ul li{
+ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FEF6D4), color-stop(100%, #F4E46F));
+ background: -webkit-linear-gradient(top, #FEF6D4, #F4E46F);
+ background: -moz-linear-gradient(top, #FEF6D4, #F4E46F);
+ background: -ms-linear-gradient(top, #FEF6D4, #F4E46F);
+ background: -o-linear-gradient(top, #FEF6D4, #F4E46F);
+ background: linear-gradient(top, #FEF6D4, #F4E46F);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#FEF6D4, endColorstr=#F4E46F);
+}	
+#vtab ul li a{
+ color:#258463;
+}
+#vtab ul li.selected a{
+ color:black;
+}
+.bghdr{
+background:#108A66 !important;
+}

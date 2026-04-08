@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+	   xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+				http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+				http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+				http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd"> 
+ <import resource="classpath:/commonPersistenceContext.xml"/>
+   <import resource="classpath:/commonConfigurationContext.xml"/>
+    <import resource="classpath:/commonEmailContext.xml"/>
+
+  
+ <bean id="cancelCasesCron" 
+ class="com.ahct.preauth.service.AutoCancelCasesScheduler"> 
+   <property name="genericDao">
+   <ref bean="genericDao"/>
+  </property>
+ </bean> 
+  <bean id="medicalAuditCron" 
+ class="com.ahct.medicalAudit.service.MedicalAuditSchedular"> 
+   <property name="genericDao">
+   <ref bean="genericDao"/>
+  </property>
+ </bean>
+ <bean id="ahcCron" 
+ class="com.ahct.annualCheckUp.service.AhcScheduler"> 
+   <property name="genericDao">
+   <ref bean="genericDao"/>
+  </property>
+  <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+ </bean>
+ <!-- Chandana - 8326 - for ABHA creation -->
+ <bean id="AadhaarVerificationService" class="com.ahct.common.service.AadhaarVerificationServiceImpl">
+  	<property name="genericDao">
+  		<ref bean="genericDao"/>
+ 	</property>
+ </bean>
+ <!-- Login integration By ishank  05-june-2013 -->
+  <bean id="loginService"
+       class="com.ahct.login.service.LoginServiceImpl"> 
+        <!--<property name="commonService">
+   <ref bean="commonService"/>
+    </property>
+  --><property name="genericDao">
+	<ref bean="genericDao" />
+  </property>
+  <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+  <property name="loginDao">
+   <ref bean="loginDao"/>
+ </property>
+</bean>
+<!-- Added by kamal for panel doctor bank details -->
+  <bean id="panelDocService" class="com.ahct.PanelDoc.Service.PanelDocServiceImpl">
+<property name="panelDocDao">
+<ref bean="panelDocDao"/>
+</property>
+</bean>
+<bean id="panelDocDao" class="com.ahct.PanelDoc.Dao.PanelDocDaoImpl">
+ <property name="genericDao">
+		 <ref bean="genericDao"/>
+	 </property>
+	  <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+   <property name="configurationService">
+	<ref bean="configurationService"/>
+  </property> 
+</bean>
+<bean id="loggingService" class="com.tcs.service.TimeLoggingServiceImpl">
+</bean>
+<bean id="loginDao"
+       class="com.ahct.login.dao.LoginDaoImpl">
+  <property name="genericDao">
+   <ref bean="genericDao"/>
+  </property>
+<property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+</bean>
+<!-- Added by Sravan for CMS -->
+  	<bean id="ceoApprovalService" class="com.ahct.CEO.service.CeoApprovalsServiceImpl">
+     <property name="genericDao">
+         <ref bean="genericDao"/>
+       </property>
+ </bean> 
+  <!-- End of CMS -->
+
+ <!-- Login integration End -->
+<!-- Cases Search By ishank  05-june-2013 -->
+  <bean id="casesSearchService"
+       class="com.ahct.caseSearch.service.CasesSearchServiceImpl"> 
+      <property name="genericDao">
+          <ref bean="genericDao"/>
+      </property>
+       <property name="casesSearchDao">
+	<ref bean="casesSearchDao" />
+  </property>
+  <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+  </bean>
+
+  
+
+<bean id="chronicOPService"
+       class="com.ahct.chronicOp.service.ChronicOPServiceImpl"> 
+  <property name="ChronicOpDao">
+    <ref bean="ChronicOpDao"/>
+  </property>  
+ <property name="genericDao">
+    <ref bean="genericDao"/>
+    
+  </property>  
+
+
+  </bean>
+  
+
+
+<bean id="ChronicOpDao"
+       class="com.ahct.chronicOp.dao.ChronicOPDAOImpl"> 
+  <property name="genericDao">
+    <ref bean="genericDao"/>
+    
+  </property>  
+  <property name="configurationService">
+	<ref bean="configurationService"/>
+  </property> 
+
+  <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+	</property>
+</bean>
+ <bean id="casesSearchDao"
+       class="com.ahct.caseSearch.dao.CasesSearchDaoImpl"> 
+      <property name="genericDao">
+          <ref bean="genericDao"/>
+      </property>
+      <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+          </bean>
+<!-- Ended -->
+<!-- Common service By ishank -->
+          <bean id="commonService"
+       class="com.ahct.common.service.CommonServiceImpl">
+  <property name="genericDao">
+   <ref bean="genericDao"/>
+ </property>
+  <property name="emailNotifier">
+   <ref bean="emailNotifier"/>
+  </property>
+  <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+ </bean>
+ <!-- END -->
+ <!-- For Claims Flow  By Ishank    START  -->
+<bean id="claimsFlowService" class="com.ahct.claims.service.ClaimsFlowServiceImpl">
+  <property name="genericDao">
+     <ref bean="genericDao"/>
+  </property>
+  <property name="claimsFlowDAO">
+     <ref bean="claimsFlowDAO"/>
+  </property>
+</bean>
+
+<bean id="claimsGenFileDAO" class="com.ahct.claims.dao.ClaimsGenFileDAOImpl">
+<property name="genericDao">
+            <ref bean="genericDao"/>
+</property>
+   <property name="claimsPaymentDao">
+            <ref bean="claimsPaymentDao"/>
+      </property> 
+
+</bean>
+
+<bean id="claimsFlowDAO" class="com.ahct.claims.dao.ClaimsFlowDAOImpl">
+       <property name="genericDao">
+            <ref bean="genericDao"/>
+      </property>
+      <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+	</property>
+	<property name="claimsPaymentDao">
+            <ref bean="claimsPaymentDao"/>
+      </property>
+     <property name="followUpDao">
+            <ref bean="followUpDao"/>
+      </property>
+</bean>
+
+<bean id="claimsPaymentDao" class="com.ahct.claims.dao.ClaimsPaymentDAOImpl">
+       <property name="genericDao">
+            <ref bean="genericDao"/>
+      </property>
+     <property name="commonService">
+	<ref bean="commonService"/>
+	</property>  
+</bean>
+<!-- For Claims Flow By Ishank    END	-->
+ <!-- Attachment By Ishank    START  -->
+  <bean id="attachmentService"
+       class="com.ahct.attachments.service.AttachmentServiceImpl"> 
+      <property name="genericDao">
+          <ref bean="genericDao"/>
+      </property>
+       <property name="attachmentDao">
+	<ref bean="attachmentDao" />
+  </property>
+   <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+  </bean>
+ <bean id="attachmentDao"
+       class="com.ahct.attachments.dao.AttachmentDaoImpl"> 
+      <property name="genericDao">
+          <ref bean="genericDao"/>
+      </property>
+      <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+          </bean>  
+   <!-- END -->    
+    <!-- FollowUp By Ishank    START  -->   
+          <bean id="followUpService"
+       class="com.ahct.followup.service.FollowUpServiceImpl"> 
+       
+    <property name="followUpDao">
+	<ref bean="followUpDao" />
+  </property>
+  <property name="genericDao">
+				<ref bean="genericDao"/>
+			</property>	
+	<property name="commonService">
+	<ref bean="commonService"/>
+	</property> 	
+	
+</bean>
+
+ <bean id="followUpDao"
+       class="com.ahct.followup.dao.FollowUpDAOImpl"> 
+       
+  <property name="genericDao">
+	<ref bean="genericDao" />
+  </property>
+  <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+  
+   <property name="claimsPaymentDao">
+            <ref bean="claimsPaymentDao"/>
+      </property> 
+      
+      <property name="claimsFlowDAO">
+     <ref bean="claimsFlowDAO"/>
+  </property>
+</bean>
+<!-- FollowUp By Ishank  End --> 
+<!-- Start Of Registration -->
+ <bean id="patientService"
+       class="com.ahct.patient.service.PatientServiceImpl">
+  <property name="patientDao">
+   <ref bean="patientDao"/>
+ </property>
+ </bean>
+ <bean id="patientDao"
+       class="com.ahct.patient.dao.PatientDaoImpl">
+  <property name="genericDao">
+   <ref bean="genericDao"/>
+  </property>
+  <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+ </bean>
+ <bean id="telephonicService"
+       class="com.ahct.telephonic.service.TelephonicServiceImpl">
+  <property name="telephonicDao">
+   <ref bean="telephonicDao"/>
+ </property>
+ </bean>
+ <bean id="telephonicDao"
+       class="com.ahct.telephonic.dao.TelephonicDaoImpl">
+  <property name="genericDao">
+   <ref bean="genericDao"/>
+  </property>
+  <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+ </bean>
+ <!-- End Of Registration -->
+
+
+<!-- added by Anitha for clinical notes in preauth-->
+     <bean id="preauthClinicalNotesService" class="com.ahct.preauth.service.PreauthClinicalNotesServiceImpl">
+     <property name="genericDao">
+     <ref bean="genericDao"/>
+     </property>
+      <property name="preauthClinicalNotesDao">
+     <ref bean="preauthClinicalNotesDao"/>
+     </property>
+     </bean>
+      <bean id="preauthClinicalNotesDao" class="com.ahct.preauth.dao.PreauthClinicalNotesDAOImpl">
+       <property name="genericDao">
+       <ref bean="genericDao"/>
+      </property>
+      </bean>
+<!--end-->
+<!--Start of EHF Preauth Cases Approval by anitha -->
+	  <bean id="casesApprovalService"
+		   class="com.ahct.preauth.service.CasesApprovalServiceImpl">
+	  <property name="genericDao">
+	   <ref bean="genericDao"/>
+	  </property>
+	   <property name="casesApprovalDAO">
+	   <ref bean="casesApprovalDAO"/>
+	 </property>
+	  <property name="hibernateTemplate">
+		<ref bean="enterpriseHibernateTemplate" />
+	  </property>
+	 </bean>
+	 <bean id="casesApprovalDAO"
+		   class="com.ahct.preauth.dao.CasesApprovalDAOImpl">
+	  <property name="genericDao">
+	   <ref bean="genericDao"/>
+	  </property>
+	 </bean>
+<!-- Added by Swetha on 08-11-2012 for Preauth-PatientCommonDtls -->
+	<bean id="preauthService" class="com.ahct.preauth.service.PreauthServiceImpl">
+	<property name="preauthDtlsDao">
+	<ref bean="preauthDtlsDao" />
+	</property>
+      <property name="genericDao">
+	<ref bean="genericDao"/>
+	</property>
+	 <property name="attachmentService">
+	<ref bean="attachmentService"/>
+	
+	</property>
+	 <property name="commonService">
+	<ref bean="commonService"/>
+	</property>
+	 <property name="preauthClinicalNotesDao">
+     <ref bean="preauthClinicalNotesDao"/>
+     </property>
+	</bean>
+	<bean id="preauthDtlsDao" class="com.ahct.preauth.dao.PreauthDtlsDaoImpl">
+	<property name="genericDao">
+	<ref bean="genericDao"/>
+	</property>
+	 <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+	</property>
+	</bean>
+<!-- End added by Swetha -->
+
+ 
+ 
+ <!-- Panel Doctor by smita -->
+
+<bean id="panelDocPayService"
+       class="com.ahct.panelDoctor.service.PanelDocPayServiceImpl">      
+  <property name="panelDocPayDao">
+   <ref bean="panelDocPayDao"/>
+ </property>
+   <property name="paymentsDao">
+	<ref bean="paymentsDao" />
+  </property>
+ <property name="genericDao">
+	<ref bean="genericDao" />
+  </property>
+   <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+	</property>
+  <property name="commonService">
+	<ref bean="commonService" />
+  </property>
+</bean>
+
+<bean id="workFlowCommonService"
+       class="com.ahct.common.service.WorkFlowCommonServiceImpl">      
+ 
+ <property name="genericDao">
+	<ref bean="genericDao" />
+  </property>
+</bean>
+
+<bean id="paymentsDao"
+       class="com.ahct.panelDoctor.dao.PaymentsDAOImpl">  
+      <property name="genericDao">
+	<ref bean="genericDao" />
+  </property>  
+ </bean>
+
+<bean id="panelDocPayDao"
+       class="com.ahct.panelDoctor.dao.PanelDocPayDAOImpl">      
+  <property name="genericDao">
+	<ref bean="genericDao" />
+  </property>
+   <property name="paymentsDao">
+	<ref bean="paymentsDao" />
+  </property>
+    <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+     <property name="claimsFlowDAO">
+	<ref bean="claimsFlowDAO" />
+  </property>
+</bean>
+
+
+<!-- End of Panel doctor -->
+ 
+
+<!--Sending Bank File By Smita :End-->
+
+ <bean id="medicalAuditService"
+       class="com.ahct.medicalAudit.service.MedicalAuditServiceImpl"> 
+    <property name="medicalAuditDao">
+   <ref bean="medicalAuditDao"/>
+  </property> 
+   <property name="genericDao">
+   <ref bean="genericDao"/>
+  </property> 
+   <property name="configurationService">
+<ref bean="configurationService"/>
+</property>
+   <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+  
+</bean>
+
+ <bean id="medicalAuditDao"
+       class="com.ahct.medicalAudit.dao.MedicalAuditDaoImpl"> 
+    <property name="genericDao">
+   <ref bean="genericDao"/>
+  </property>  
+  <property name="configurationService">
+<ref bean="configurationService"/>
+</property>  
+  <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+	</property>
+  
+</bean>
+<!-- change password functionality -->
+ <bean id="changePwdRequestService"
+       class="com.ahct.login.service.ChangePwdRequestServiceImpl">
+<!-- <property name="sendSms">
+   <ref bean="sendSms"/>
+  </property> -->
+  <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+  <property name="genericDao">
+   <ref bean="genericDao"/>
+  </property>
+ </bean>
+  <!-- change password functionality -->
+<!--  <bean id="sendSms"
+       class="com.ahct.common.util.SendSMS">
+ </bean> -->
+ <!-- Update Profile -->
+  <bean id="updateProfileService"
+       class="com.ahct.login.service.UpdateProfileServiceImpl">
+   <property name="genericDao">
+   <ref bean="genericDao"/>
+   </property>
+    <property name="commonService">
+   <ref bean="commonService"/>
+  </property>
+ </bean>
+ <!--  End of Update Profile -->
+
+
+ <!--Digital Certificate-->
+ <bean id="digitalCertificateService"
+       class="com.ahct.login.service.DigitalCertificateServiceImpl">
+       <property name="genericDao">
+   <ref bean="genericDao"/>
+  </property>
+ </bean>
+<bean id="DigitalSignatureClientBean"
+       class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+           <property name="serviceUrl" value="rmi://172.16.5.41:1109/DigitalSignatureService" />
+	   <property name="serviceInterface" value="com.ahct.common.util.DigitalSignature" />
+	   <property name="refreshStubOnConnectFailure" value="true"/>
+	   <property name="lookupStubOnStartup" value="false" />
+ </bean> 
+ <!-- <bean id="DigitalSignatureClientBean"
+       class="com.ahct.common.util.DigitalSignatureImpl"> </bean> -->
+           
+<bean id="applicationContextProvider" 
+		class="com.ahct.common.util.ApplicationContextProvider">
+</bean>
+ <!-- Flagging -->
+ 
+ <bean id="flaggingService"
+       class="com.ahct.flagging.service.FlaggingServiceImpl"> 
+    <property name="flaggingDao">
+   <ref bean="flaggingDao"/>
+  </property>  
+  <property name="genericDao">
+    <ref bean="genericDao"/>
+  </property> 
+</bean>
+ 
+ <bean id="flaggingDao"
+       class="com.ahct.flagging.dao.FlaggingDaoImpl"> 
+  <property name="genericDao">
+    <ref bean="genericDao"/>
+  </property>  
+  <property name="configurationService">
+	<ref bean="configurationService"/>
+  </property>  
+  <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+</bean>
+
+<!-- End of Flagging -->
+<!-- Annual CheckUp -->
+ <bean id="annualCheckUpService"
+       class="com.ahct.annualCheckUp.service.AnnualCheckUpServiceImpl"> 
+    <property name="annualCheckUpDAO">
+   <ref bean="annualCheckUpDAO"/>
+  </property>  
+</bean>
+ 
+ <bean id="annualCheckUpDAO"
+       class="com.ahct.annualCheckUp.dao.AnnualCheckUpDAOImpl"> 
+  <property name="genericDao">
+    <ref bean="genericDao"/>
+  </property>  
+  <property name="configurationService">
+	<ref bean="configurationService"/>
+  </property>  
+  <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+</bean>
+<!-- Ahc Claims -->
+<bean id="ahcClaimsDao"
+       class="com.ahct.annualCheckUp.dao.AhcClaimsDaoImpl"> 
+   <property name="genericDao">
+    <ref bean="genericDao"/>
+  </property>  
+ <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>  
+  
+</bean>
+<bean id="ahcClaimsService"
+       class="com.ahct.annualCheckUp.service.AhcClaimsServiceImpl"> 
+    <property name="ahcClaimsDao">
+   <ref bean="ahcClaimsDao"/>
+  </property>  
+   <property name="genericDao">
+    <ref bean="genericDao"/>
+  </property>
+   <property name="configurationService">
+	<ref bean="configurationService"/>
+  </property>  
+</bean>
+ 
+ 
+ <!-- Added by Namratha Grandhi for Admin Sanction -->
+ <bean id="adminSanctionService"
+       class="com.ahct.CEO.service.AdminSanctionServiceImpl">      
+ <property name="genericDao">
+	<ref bean="genericDao" />
+  </property>
+</bean>
+<bean id="workFlowCommonServiceCEO"
+       class="com.ahct.workflow.common.service.WorkFlowCommonServiceImpl">      
+ <property name="genericDao">
+	<ref bean="genericDao" />
+  </property>
+</bean>
+
+
+ 
+ <bean id="chronicClaimsDao"
+       class="com.ahct.chronicOp.dao.chronicOpClaimsDaoImpl"> 
+   <property name="genericDao">
+    <ref bean="genericDao"/>
+  </property> 
+  <property name="claimsPaymentDao">
+            <ref bean="claimsPaymentDao"/>
+      </property> 
+ <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>  
+   <property name="commonService">
+	<ref bean="commonService"/>
+	</property> 
+</bean>
+<!-- Added by Sreedevi for Empanelment -->
+  <bean id="ceoWorkListService" class="com.ahct.CEO.service.CeoWorkListServiceImpl">
+	 <property name="genericDao">
+		 <ref bean="genericDao"/>
+	 </property>
+	 
+	<property name="configurationService">
+	<ref bean="configurationService"/>
+  </property> 
+ </bean>
+ 
+  <!-- Added by ramalakshmi  journalist cards search-->
+  	<bean id="cardSearchService" class="com.ahct.cardSearch.service.cardSearchServiceImpl">
+  		 
+		<property name="genericDao">
+		 	<ref bean="genericDao"/>
+	 	</property>
+  	</bean>
+	
+	<!-- Added by ramalakshmi  for biometric -->
+	  <bean id="bioMetricService" class="com.ahct.bioMetric.service.BioMetricRegistrationServiceImpl">
+	 <property name="genericDao">
+		 <ref bean="genericDao"/>
+	 </property>
+	 <property name="bioMetricDao">
+		 <ref bean="bioMetricDao"/>
+	 </property>
+	  <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property> 
+ </bean>
+ 
+  <bean id="bioMetricDao" class="com.ahct.bioMetric.dao.BioMetricRegistrationDaoImpl">
+	 <property name="genericDao">
+		 <ref bean="genericDao"/>
+	 </property>
+	  <property name="hibernateTemplate">
+	<ref bean="enterpriseHibernateTemplate" />
+  </property>
+   <property name="configurationService">
+	<ref bean="configurationService"/>
+  </property> 
+ </bean>
+
+
+
+<!-- Filter -->
+ <bean id="autoCompleteDao" class="com.ahct.common.filter.AutoCompleteDao">
+	 <property name="genericDao">
+		 <ref bean="genericDao"/>
+	 </property>
+ </bean>
+</beans>
+
+
+

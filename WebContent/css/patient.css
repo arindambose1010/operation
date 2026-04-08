@@ -1,0 +1,91 @@
+.patHeaderTable
+{
+	width:100%;
+	border-collapse:collapse;
+	font-family:Tahoma, Helvetica, sans-serif;
+}
+.patHeaderTable td
+{
+	font-size:1em;
+	text-align:center;
+	background-color:#96CDCD;
+	-moz-border-radius: 6px 6px 6px 6px;
+	-webkit-border-radius: 6px 6px 6px 6px;
+	border-radius: 6px 6px 6px 6px;
+}
+.patHeaderTable th 
+{
+	font-size:1.1em;
+	text-align:center;
+	padding-top:5px;
+	padding-bottom:4px;
+	background-color:#96CDCD;
+	-moz-border-radius: 6px 6px 6px 6px;
+	-webkit-border-radius: 6px 6px 6px 6px;
+	border-radius: 6px 6px 6px 6px;
+}
+
+.contentTable
+{
+ 	width:100%;
+ 	align:left;	
+ 	font-family:Tahoma, Helvetica, sans-serif;
+}
+.contentTable td
+{
+	width:20%;
+	font-size:1em;
+	-moz-border-radius: 6px 6px 6px 6px;
+	-webkit-border-radius: 6px 6px 6px 6px;
+	border-radius: 6px 6px 6px 6px;
+	font-weight:bold;
+	padding:1px;
+}
+.contentTable th
+{
+	font-size:1.1em;
+	text-align:left;
+	background-color:#96CDCD;
+	-moz-border-radius: 6px 6px 6px 6px;
+	-webkit-border-radius: 6px 6px 6px 6px;
+	border-radius: 6px 6px 6px 6px;
+}
+.outerTable1
+{
+	border:1px solid #e9e9e9;
+	font-family:Arial, Helvetica, Helvetica neue;
+	font-size:1em;
+	color:#262626;
+	background:#f3f3f3;
+	margin:5px;
+	width:100%;
+}
+.medicalDetailsTable
+{
+	font-weight:bold;
+}
+.searchTable
+{
+ 	width:100%;
+ 	align:left;	
+ 	font-family:Tahoma, Helvetica, sans-serif;
+}
+.searchTable td
+{
+	width:16%;
+	font-size:1em;
+	-moz-border-radius: 6px 6px 6px 6px;
+	-webkit-border-radius: 6px 6px 6px 6px;
+	border-radius: 6px 6px 6px 6px;
+	font-weight:bold;
+}
+.searchTable th
+{
+	font-size:1.1em;
+	text-align:left;
+	background-color:#96CDCD;
+	-moz-border-radius: 6px 6px 6px 6px;
+	-webkit-border-radius: 6px 6px 6px 6px;
+	border-radius: 6px 6px 6px 6px;
+} 
+
